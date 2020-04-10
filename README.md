@@ -41,6 +41,15 @@
 ### 기술 면접
 - 면접에서 제시한 문제는 **문제 푸는 능력**을 테스트하는 것이다. 외워서 답변하는 것은 도움이 되질 않는다.
 
+### 자기소개
+
+```
+[Sample]
+~에 지원한 ~입니다.
+그리고 저는 ~ 직무를 잘하기 위해서 이런 유사한 경험이 있습니다. 이 때 ~한 성과를 냈고 이걸 통해 ~한 통찰을 얻었습니다(배움과 깨달음을 얻었습니다.) 
+이러한 저의 경험들이 지원하는 직무/기업에서 계속해서 재생산 될것이라 확신하여 지원하게 되었습니다. 감사합니다.
+```
+
 
 ## 질문 목록
 - [WEB]()
@@ -67,8 +76,7 @@
 - [Vue.js]()
 
 
-
-
 ## Reference
 - [JaeYeopHan님의 Interview Question for Beginner[Github]](https://github.com/JaeYeopHan/Interview_Question_for_Beginner)
+- [면접왕 이형[유튜브]](https://www.youtube.com/channel/UCp-C7mtkuOw6q8E1Uc2NVpQ)
 - [gyoogle님의 tech-interview-for-developer[Github]](https://github.com/gyoogle/tech-interview-for-developer)
