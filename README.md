@@ -1,11 +1,17 @@
-# 개발자 인터뷰 및 논리적으로 말하기
-> 웹 백엔드 개발자 신입 및 주니어를 준비하는 과정에서 항상 면접에서 떨어지는 제 자신을 발견했습니다. 가장 큰 문제점은 내가 아는 지식을 논리적으로 말을 하지 못한다고 판단하였습니다. 솔직히 지금까지 말하기 연습을 해본 적이 없었습니다. 단순히 머리에 지식을 넣으면 필요할 때 말은 할 수 있겠지라는 안일한 생각으로 살았습니다. 하지만 말하기를 잘하려면 지식을 배우는 것 외에 또 다른 노력이 필요하다는 것을 깨달았습니다. 그래서 이를 공부하기 위해 이 레포지토리를 만들어 정리하려고 합니다.
+# Technical Interview And Speaking
+> 현재 웹 백엔드 주니어 및 신입을 준비하면서 정리하고 있는 공간입니다.
+
+## 개요
+학습한 기술에 대해 짧게 설명할 수 있는 것은 그 기술에 대해 확실한 이해가 바탕이 된다고 생각합니다. 지식을 배울 때 누구에게나 설명할 수 있을 정도로 학습해야 합니다. 
+
+이 공간은 학습 방법 중 하나인 누군가에게 설명하듯이 공부하는 것을 연습하는 곳입니다. 배운 것을 그대로 말하기보다 직접 생각하여 이해하기 쉽고 논리적으로 말하기 위해 노력할 것입니다. 이를 통해 학습한 기술에 대해 더욱 명확하게, 더 깊게 이해하려 합니다.
 
 
 ## 목표
-- 기술 인터뷰 준비
+- **기술 인터뷰 준비**
 - **학습한 지식을 짧게 요약하여 설명하는 능력**
-- 깊이 학습하기 위한 시작 단계
+- **깊이 학습하기 위한 시작 단계**
+- **좋은 질문 만들기**
 
 
 ## 규칙
@@ -13,45 +19,13 @@
 - 필요한 링크, 그림, 코드를 간단히 기재한다.
 
 
-## 말하기
-- 말하기의 가장 핵심은 **생각 정리**와 **발음**이다.
-    - 발음을 정확히 하는 것만으로도 기본적인 호흡과 발성이 따라온다고 한다.
-- 상대방 말을 귀 기울여 듣는다.
-    - 특히, 면접관의 질문을 놓치거나, 잘못 해석해서 대답하는 일이 없어야 한다.
-    - 면접관의 질문을 짧게 요약한 후 시작해도 좋을 듯하다.
-        - 면접관: "~ 장점은 뭔가요?"
-        - 면접자: "~ 장점은 ...이다."
-
-### 논리적으로 말하기
-- PREP 기법
-    - **Point**: 결론, 요점, 핵심
-    - **Reason**: 이유, "왜?"
-    - **Example**: 사례, 사실, 데이터
-    - **Point**: 결론 반복
+## TIP
+- [기술 면접 시작하기]()
+- [마지막 질문]()
 
 
-### 면접 말하기
-- 두괄식으로 말하기
-    - 두괄식은 **결론(핵심)** 부터 말하는 것이다.
-    - 결론: 예/아니오, 숫자와 같은 객관적인 증거, 결과
-    - 두괄식이 아닌 것: 배경, 의도, 프로세스 등
-    - `결론 -> 두괄식이 아닌 것 -> 결론`으로 말하는 것을 기본으로 한다.
-- 면접관은 입사 후 같이 일해야 할 사람이다. **대화**를 하려고 노력하자.
-
-### 기술 면접
-- 면접에서 제시한 문제는 **문제 푸는 능력**을 테스트하는 것이다. 외워서 답변하는 것은 도움이 되질 않는다.
-
-### 자기소개
-
-```
-[Sample]
-~에 지원한 ~입니다.
-그리고 저는 ~ 직무를 잘하기 위해서 이런 유사한 경험이 있습니다. 이 때 ~한 성과를 냈고 이걸 통해 ~한 통찰을 얻었습니다(배움과 깨달음을 얻었습니다.) 
-이러한 저의 경험들이 지원하는 직무/기업에서 계속해서 재생산 될것이라 확신하여 지원하게 되었습니다. 감사합니다.
-```
-
-
-## 질문 목록
+## 기술 면접 QnA
+- [질문 리스트]()
 - [WEB]()
 
 ### Computer Science
@@ -77,6 +51,9 @@
 
 
 ## Reference
-- [JaeYeopHan님의 Interview Question for Beginner[Github]](https://github.com/JaeYeopHan/Interview_Question_for_Beginner)
+- [코딩 인터뷰 완전 분석[책]](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788966263080&orderClick=LAG&Kc=)
 - [면접왕 이형[유튜브]](https://www.youtube.com/channel/UCp-C7mtkuOw6q8E1Uc2NVpQ)
-- [gyoogle님의 tech-interview-for-developer[Github]](https://github.com/gyoogle/tech-interview-for-developer)
+- [Technical Interview Guidelines for Beginners[Github]](https://github.com/JaeYeopHan/Interview_Question_for_Beginner)
+- [신입 개발자 전공 지식 & 기술 면접 백과사전[Github]](https://github.com/gyoogle/tech-interview-for-developer)
+- [tech-refrigerator[Github]](https://github.com/GimunLee/tech-refrigerator)
+- [기술면접 준비하기[Velog]](https://velog.io/@hygoogi/%EA%B8%B0%EC%88%A0%EB%A9%B4%EC%A0%91-%EC%A4%80%EB%B9%84%ED%95%98%EA%B8%B0#%EC%8A%A4%ED%94%84%EB%A7%81-%EB%B0%8F-%EC%9B%B9-%EA%B0%9C%EB%B0%9C)
