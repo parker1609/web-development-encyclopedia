@@ -20,7 +20,7 @@
 
 
 ## TIP
-- [기술 면접 시작하기](https://github.com/CODEMCD/technical-interview-speaking/blob/master/Tip/Tech-Interview-start.md#4-%EB%AC%B8%EC%A0%9C-%ED%95%B4%EA%B2%B0%ED%95%98%EA%B8%B0%EC%BD%94%EB%94%A9-%EC%84%A4%EA%B3%84-%EB%93%B1)
+- [기술 면접 시작하기](https://github.com/CODEMCD/technical-interview-speaking/blob/master/Tip/Tech-Interview-start.md)
     1. 면접을 위한 자기소개서 작성법
     2. 기술 면접에서 평가하는 것
     3. 말하기
