@@ -190,6 +190,119 @@ Separate Chaining 방식은 한 버킷에 저장되는 데이터 개수를 제�
 #### Open Address VS Separate Chaining
 두 방식 모두 최악의 시간복잡도는 같지만, 데이터의 개수가 적을 때는 Open Address 방식이 효율적입니다. 왜냐하면 해시 버킷만을 사용하고, 이는 순차적으로 저장되어 있어 배열과 같이 캐시 효율성이 높습니다. 하지만 속도면에서는 평균적으로 Separate Chaining 방식이 빠르다고 합니다.
 
+## Q. 그래프(Graph)에 대해 설명하시오.
+그래프는 노드(node)와 간선(edge)을 하나로 모아놓은 자료구조를 말합니다.
+
+그래프와 트리의 차이는 다음과 같습니다.
+
+|  | 그래프 | 트리 |
+|-----------|-------------------------------------------------------|-----------------------------------------------------------|
+| 정의 | 노드와 그 노드를 연결하는 간선을 하나로 모은 자료구조 | 그래프의 한 종류로, DAG(Directed Acyclic Graph)의 한 종류 |
+| 방향성 | 방향, 무방향 모두 존재 | 방향 |
+| 사이클 | 사이클이 가능하며, 순환/비순환 그래프가 모두 존재 | 사이클이 불가능하며, 비순환 그래프 |
+| 루트 노드 | 없음 | 한 개의 루트 노드만 존재 |
+| 부모-자식 | 없음 | 있음 |
+| 모델 | 네트워크 모델 | 계층 모델 |
+| 순회 | DFS, BFS | pre-order, in-order, post-order |
+| 간선의 수 | 그래프에 따라 다르며, 없을 수도 있음 | 노드가 N개이면 항상 N-1개의 간선을 가짐 |
+
+그래프는 인접 행렬과 인접 리스트 두 가지 방식으로 구현이 가능합니다.
+
+그래프의 탐색은 DFS, BFS 두 가지로 나뉩니다.
+
+### DFS(Depth First Search)
+- 한 길을 깊게 파고드는 방식으로 방문하지 않은 정점을 하나씩 방문하면서 그래프를 탐색합니다.
+- 스택(Stack)과 재귀를 이용하여 구현합니다.
+- 시간 복잡도: 인접 행렬 - O(V^2), 인접 리스트 - O(V+E) (V : 정점, E : 간선)
+
+```cpp
+#include <cstdio>
+#include <algorithm>
+#include <vector>
+using namespace std;
+vector<int> num[1001];
+bool check[1001];
+
+void DFS(int node)  //using STACK
+{
+	check[node] = true;
+	printf("%d ", node);
+	for (int i = 0; i < num[node].size(); i++) {
+        int next = num[node][i];
+        if (check[next] == false)
+            DFS(next);
+	}
+}
+
+int main(void)
+{
+	int n, m, start;
+	scanf("%d %d %d", &n, &m, &start);
+	for (int i = 0; i < m; i++) {
+        int u, v;
+        scanf("%d %d", &u, &v);
+        num[u].push_back(v);
+        num[v].push_back(u);
+	}
+	for (int i = 1; i <= n; i++)
+        sort(num[i].begin(), num[i].end());
+
+	DFS(start);
+
+	return 0;
+}
+```
+
+### BFS(Breath First Search)
+- 한 정점에서 연결된 모든 간선의 정점을 방문하면서 그래프를 탐색합니다.
+- 큐(Queue)를 이용하여 구현합니다.
+- 시간 복잡도 : 인접 행렬 - O(V^2), 인접 리스트 - O(V+E) (V : 정점, E : 간선)
+
+```cpp
+#include <cstdio>
+#include <algorithm>
+#include <vector>
+using namespace std;
+vector<int> num[1001];
+bool check[1001];
+
+void BFS(int start)  //using QUEUE
+{
+	queue<int> que;
+	memset(check, false, sizeof(check));
+	check[start] = true;
+	que.push(start);
+	while (!que.empty()) {
+        int node = que.front();
+        que.pop();
+        printf("%d ", node);
+        for (int i = 0; i < num[node].size(); i++) {
+            int next = num[node][i];
+            if (check[next] == false) {
+                check[next] = true;
+                que.push(next);
+            }
+        }
+	}
+}
+int main(void)
+{
+	int n, m, start;
+	scanf("%d %d %d", &n, &m, &start);
+	for (int i = 0; i < m; i++) {
+        int u, v;
+        scanf("%d %d", &u, &v);
+        num[u].push_back(v);
+        num[v].push_back(u);
+	}
+	for (int i = 1; i <= n; i++)
+        sort(num[i].begin(), num[i].end());
+
+	BFS(start);
+
+	return 0;
+}
+```
 
 ## Reference
 - [자료구조란?[블로그]](https://andrew0409.tistory.com/148)
