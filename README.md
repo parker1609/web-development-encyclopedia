@@ -2,15 +2,14 @@
 > 현재 웹 백엔드 주니어 및 신입을 준비하면서 정리하고 있는 공간입니다.
 
 ## 개요
-학습한 기술에 대해 짧게 설명할 수 있는 것은 그 기술에 대해 확실한 이해가 바탕이 된다고 생각합니다. 지식을 배울 때 누구에게나 설명할 수 있을 정도로 학습해야 합니다. 
+기술에 대해 말로 설명할 수 있다는 것은 그 기술에 대한 이해가 바탕이 됩니다. 무엇인가를 배울 때 누군가에게 설명할 수 있을 정도로 학습하기 위한 저장소입니다.
 
-이 공간은 학습 방법 중 하나인 누군가에게 설명하듯이 공부하는 것을 연습하는 곳입니다. 배운 것을 그대로 말하기보다 직접 생각하여 이해하기 쉽고 논리적으로 말하기 위해 노력할 것입니다. 이를 통해 학습한 기술에 대해 더욱 명확하게, 더 깊게 이해하려 합니다.
+이 공간은 학습 방법 중 하나인 누군가에게 설명하듯이 공부하는 것을 연습하는 곳입니다. 배운 것을 그대로 말하기보다 정리하여 이해하기 쉽고 논리적으로 말하기 위해 노력할 것입니다.
 
 
 ## 목표
 - **기술 인터뷰 준비**
-- **학습한 지식을 짧게 요약하여 설명하는 능력**
-- **깊이 학습하기 위한 시작 단계**
+- **학습한 지식을 간단, 명료하게 정리하는 능력**
 - **좋은 질문 만들기**
 
 
@@ -21,36 +20,83 @@
 
 ## TIP
 - [기술 면접 시작하기](https://github.com/CODEMCD/technical-interview-speaking/blob/master/Tip/Tech-Interview-start.md)
-    1. 면접을 위한 자기소개서 작성법
-    2. 기술 면접에서 평가하는 것
-    3. 말하기
-    4. 문제 해결하기(코딩, 설계 등)
+    - 면접을 위한 자기소개서 작성법
+    - 기술 면접에서 평가하는 것
+    - 말하기
+    - 문제 해결하기(코딩, 설계 등)
+- [면접 질문 리스트](https://github.com/CODEMCD/technical-interview-speaking/blob/master/Tip/Interview-Question-List.md)
 - [마지막 질문]()
 
-
 ## 기술 면접 QnA
-- [질문 리스트]()
-- [WEB]()
+- [WEB](https://github.com/CODEMCD/technical-interview-speaking/blob/master/WEB/README.md)
+    - Q. HTTP
+    - Q. REST API(Restful API)
+    - Q. 쿠키와 세션
+    - Q. 인증 방식
+    - Q. 브라우저의 동작 과정
 
 ### Computer Science
-- [운영체제]()
-- [데이터베이스]()
+- [운영체제](https://github.com/CODEMCD/technical-interview-speaking/blob/master/OS/README.md)
+    - Q. 프로세스(Process)와 쓰레드(Thread)
+    - Q. 교착상태(DeadLock, 데드락)
+- [데이터베이스](https://github.com/CODEMCD/technical-interview-speaking/blob/master/Database/README.md)
+    - Q. 스토리지 엔진
+    - Q. 인덱스(Index)
+    - Q. 트랜잭션(Transaction)
+    - Q. SQL Injection
+    - Q. NoSQL
 - [네트워크]()
-- [자료구조]()
+- [자료구조](https://github.com/CODEMCD/technical-interview-speaking/blob/master/DataStructure/README.md)
+    - Q. 자료구조란?
+    - Q. Array VS Linked List
+    - Q. 큐(Queue)와 스택(Stack)
+    - Q. 트리(Tree)
+    - Q. Hash Table
+    - Q. 그래프(Graph)
+- [알고리즘](https://github.com/CODEMCD/technical-interview-speaking/blob/master/Algorithm/README.md)
+    - Q. 정렬 알고리즘
 
 ### Language
-- [공통 질문]()
-- [JAVA]()
+- [공통 질문](https://github.com/CODEMCD/technical-interview-speaking/blob/master/LanguageCommon/README.md)
+    - Q. Call By Value VS Call By Reference
+    - Q. 얕은 복사(Shallow Copy) VS 깊은 복사(Deep Copy)
+    - Q. 기본 자료형(primitive data type)과 참조 자료형(reference data type)
+- [JAVA](https://github.com/CODEMCD/technical-interview-speaking/blob/master/JAVA/README.md)
+    - Q. Java
+    - Q. `final` 키워드
+    - Q. Error와 Exception
+    - Q. 문자열 클래스
+    - Q. Java8
+    - Q. Collection
+    - Q. 추상 클래스(abstract class)와 인터페이스(interface)
+    - Q. Generic(제네릭)
+    - Q. 롬복(Lombok)이 생성하는 메서드가 만들어지는 시점
+    - Q. JUnit의 생명주기에 설명하시오.
 - [C++]()
 
 ### Software Engineering
-- [객체지향 프로그래밍]()
+- [객체지향 프로그래밍](https://github.com/CODEMCD/technical-interview-speaking/blob/master/OOP/README.md)
+    - Q. 객체지향 프로그래밍(OOP)이란?
+    - Q. 책임(Responsibility)
+    - Q. 클래스(Class) VS 인스턴스(Instance)
+    - Q. 추상화(Abstraction)
+    - Q. 캡슐화(Encapsulation)
+    - Q. 상속(Inheritance)
+    - Q. 다형성(Polymorphism)
+    - Q. SOLID 원칙
 - [테스트 코드]()
 - [클린 코드]()
 - [Git]()
 
 ### Framework
-- [Spring Framework]()
+- [Spring Framework](https://github.com/CODEMCD/technical-interview-speaking/blob/master/SpringFramework/README.md)
+    - Q. Spring Framework를 사용하는 이유
+    - Q. Spring IoC 컨테이너
+    - Q. Spring Bean
+    - Q. Bean Factory VS Application Context
+    - Q. Spring MVC
+    - Q. AOP
+    - Q. Spring Framework VS Spring Boot
 - [Vue.js]()
 
 
