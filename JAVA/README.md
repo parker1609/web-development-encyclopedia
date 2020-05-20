@@ -60,10 +60,56 @@
     - 자바 인터프리터 : 바이트 코드 명령어를 하나씩 읽어서 해석하고 실행합니다. 하나하나의 실행은 빠르나, 전체적인 실행 속도가 느리다는 단점을 가집니다.
     - JIT 컴파일러(Just-In-Time Compiler) : 인터프리터의 단점을 보완하기 위해 도입된 방식으로 바이트 코드 전체를 컴파일하여 바이너리 코드로 변경하고 이후에는 해당 메서드를 더이상 인터프리팅 하지 않고, 바이너리 코드로 직접 실행하는 방식입니다. 하나씩 인터프리팅하여 실행하는 것이 아니라 바이트 코드 전체가 컴파일된 바이너리 코드를 실행하는 것이기 때문에 전체적인 실행속도는 인터프리팅 방식보다 빠릅니다.
 
-### JVM, GC
-#### 읽을거리
+자바 컴파일부터 JVM에서 실행까지 자세한 내용은 아래를 참고하십시오.
+- [Back to the Essence - Java 컴파일에서 실행까지 - (1)](https://homoefficio.github.io/2019/01/31/Back-to-the-Essence-Java-%EC%BB%B4%ED%8C%8C%EC%9D%BC%EC%97%90%EC%84%9C-%EC%8B%A4%ED%96%89%EA%B9%8C%EC%A7%80-1/)
+- [Back to the Essence - Java 컴파일에서 실행까지 - (2)](https://homoefficio.github.io/2019/01/31/Back-to-the-Essence-Java-%EC%BB%B4%ED%8C%8C%EC%9D%BC%EC%97%90%EC%84%9C-%EC%8B%A4%ED%96%89%EA%B9%8C%EC%A7%80-2/)
+
+### GC(Garbage Collector, 가비지 컬렉터)
+GC는 자바에서 메모리를 관리하는 방법을 말합니다. GC는 기본적으로 메모리 할당, 사용중인 메모리 인식, 사용하지 않는 메모리 인식, 메모리 해제 4가지 역할을 수행합니다. 따라서 개발자는 메모리 관리는 자신이 아닌 GC가 대신하여 수행합니다.
+
+GC가 만들어진 배경을 보면 2가지 전제조건을 바탕으로 합니다.
+- 대부분의 객체는 금방 접근 불가능 상태(unreachable)가 된다.
+- 오래된 객체에서 젊은 객체로의 참조는 아주 적게 존재한다.
+
+이 2가지 전제조건의 장점을 살리기 위해 JVM의 GC 대상인 Heap 영역은 크게 Young 영역과 Old 영역으로 나뉘며, 각 영역마다 GC 방법도 다릅니다.
+
+![JVM HEAP](./images/jvm_heap.png)
+출처: <https://www.jvmhost.com/articles/how-can-i-monitor-memory-usage-of-my-tomcat-jvm/>
+
+#### Young 영역(Yong Generation 영역) GC
+새롭게 생성한 객체의 대부분이 이 영역에 위치하게 됩니다. 대부분의 객체가 금방 접근 불가능 상태가 되므로 매우 많은 객체가 Young 영역에서 생성되었다가 사라집니다. 이 영역에서 GC를 Minor GC라고 부릅니다.
+
+Young 영역은 크게 위 그림과 같이 세 가지 영역으로 나뉩니다.
+- Eden 영역
+- From Survivor 영역
+- To Survivor 영역
+
+Young 영역에서 Minor GC가 동작하는 과정은 다음과 같습니다.
+- **새로 생성한 대부분의 객체는 Eden 영역에 위치한다.**
+- Eden 영역에서 GC가 한 번 발생한 후 살아남은 객체는 Survivor 영역 중 하나로 이동된다.
+- Eden 영역에서 GC가 발생하면 이미 살아남은 객체가 존재하는 Survivor 영역으로 객체가 계속 쌓인다.
+- 하나의 Survivor 영역이 가득 차게 되면 그 중에서 살아남은 객체를 다른 Survivor 영역으로 이동한다. 그리고 가득 찬 Survivor 영역은 아무 데이터도 없는 상태로 된다.
+- 이 과정을 반복하다가 **계속해서 살아남아 있는 객체는 Old 영역으로 이동**하게 된다.
+
+위 과정에 따르면 Survivor 영역 둘 중 하나는 반드시 비어있는 상태가 되어야 합니다. 만약 두 영역의 데이터가 모두 없거나 모두 존재하는 상태는 비정상적인 상태입니다.
+
+#### Old 영역(Old Generation 영역) GC
+Young 영역에서 살아남은 객체는 Old 영역으로 이동하게 됩니다. Old 영역은 대부분 Young 영역보다 크게 할당되며, 크기가 큰 만큼 GC가 발생하는 횟수는 Young 영역보다 적지만 오래 걸립니다. Old 영역의 GC를 Major GC 또는 Full GC라고 부릅니다.
+
+Old 영역의 객체가 Young 영역의 객체를 참조할 수도 있습니다. 이러한 경우를 처리하기 위해서 Old 영역에는 512바이트의 덩어리(chunk)로 되어 있는 카드 테이블(card table)이 존재합니다. 카드 테이블에는 Old 영역에 있는 객체가 Young 영역의 객체를 참조할 때마다 정보를 표시합니다. Minor GC가 실행될 때는 전체 Old 영역을 찾지 않고 카드 테이블만 뒤져서 GC 대상인지 판별합니다. 
+
+Major GC는 기본적으로 Old 영역의 데이터가 가득차면 실행됩니다. JVM에서 Major GC가 발생하면 모든 쓰레드가 멈추는 **Stop-The-World** 현상이 발생합니다. GC 작업이 완료되어야 쓰레드는 다시 하던 일을 시작할 수 있습니다. 
+
+JVM 또는 GC 튜닝이라고 하면 Old 영역으로 이동하는 객체의 수를 줄이거나 Major GC의 시간을 줄이는 것을 말합니다. 따라서 성능을 위해 여러 다음과 같은 여러 종류의 GC가 존재합니다.
+- Serial GC
+- Parallel GC
+- Parallel Old GC(Parallel Compacting GC)
+- Concurrent Mark & Sweep GC(이하 CMS)
+- G1(Garbage First) GC
+
+#### Reference
+- <https://d2.naver.com/helloworld/1329>
 - <https://www.holaxprogramming.com/2017/10/09/java-jvm-performance/#JVM%EC%9D%98-%EB%8B%A4%EC%96%91%ED%95%9C-Garbage-Collector>
-- <https://homoefficio.github.io/2019/01/31/Back-to-the-Essence-Java-%EC%BB%B4%ED%8C%8C%EC%9D%BC%EC%97%90%EC%84%9C-%EC%8B%A4%ED%96%89%EA%B9%8C%EC%A7%80-1/>
 
 
 ## Q. `final` 키워드
