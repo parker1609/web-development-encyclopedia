@@ -29,16 +29,28 @@
 
 ## 기술 면접 QnA
 - [WEB](https://github.com/CODEMCD/technical-interview-speaking/blob/master/WEB/README.md)
+    - Q. Web Server
+        - 정적 페이지(Static Page) VS 동적 페이지(Dynamic Page)
+        - Web Server VS WAS(Web Application Server)
     - Q. HTTP
     - Q. REST API(Restful API)
     - Q. 쿠키와 세션
     - Q. 인증 방식
     - Q. 브라우저의 동작 과정
+- [Backend]()
 
 ### Computer Science
 - [운영체제](https://github.com/CODEMCD/technical-interview-speaking/blob/master/OS/README.md)
     - Q. 프로세스(Process)와 쓰레드(Thread)
+        - Context Switching(문맥 교환)
+        - Multi Process VS Multi Thread
+    - Q. 프로세스 동기화
+        - 임계 영역(Critical Section)
     - Q. 교착상태(DeadLock, 데드락)
+    - Q. CPU 스케줄링
+    - Q. 페이징
+    - Q. 가상 메모리
+    - Q. 캐시 메모리(Cache Memory)
 - [데이터베이스](https://github.com/CODEMCD/technical-interview-speaking/blob/master/Database/README.md)
     - Q. 스토리지 엔진
     - Q. 인덱스(Index)
@@ -63,10 +75,18 @@
     - Q. 기본 자료형(primitive data type)과 참조 자료형(reference data type)
 - [JAVA](https://github.com/CODEMCD/technical-interview-speaking/blob/master/JAVA/README.md)
     - Q. Java
+        - 자바 실행 과정
+        - GC(Garbage Collector, 가비지 컬렉터)
     - Q. `final` 키워드
     - Q. Error와 Exception
+        - Checked Exception과 Unchecked Exception 차이
     - Q. 문자열 클래스
+        - String 클래스
+        - StringBuilder VS StringBuffer
     - Q. Java8
+        - Lambda Expressions
+        - Stream API
+        - Optional
     - Q. Collection
     - Q. 추상 클래스(abstract class)와 인터페이스(interface)
     - Q. Generic(제네릭)
