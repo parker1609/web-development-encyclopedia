@@ -94,7 +94,7 @@ private static void insertionSort(int[] array, int size) {
 ![병합 정렬](./images/merge_sort_img.png)
 출처: <https://gmlwjd9405.github.io/2018/05/08/algorithm-merge-sort.html>
 
-병합 정렬은 정복 과정에서 각 레벨에서 비교후 합치는 연산이 O(N)이 소요되고, 레벨의 깊이가 O(logN)이므로 결과적으로 O(NlogN)의 시간이 소요됩니다. 하지만 병합하는 과정에서 임시 배열을 사용하므로 공간 복잡도가 O(N)입니다.
+병합 정렬은 정복 과정에서 각 레벨에서 비교 후 합치는 연산이 O(N)이 소요되고, 레벨의 깊이가 O(logN)이므로 결과적으로 O(NlogN)의 시간이 소요됩니다. 하지만 병합하는 과정에서 임시 배열을 사용하므로 공간 복잡도가 O(N)입니다.
 
 ```java
 private static void mergeSort(int[] arr, int left, int right, int[] helper) {
@@ -140,7 +140,7 @@ private static void mergeTwoArea(int[] arr, int left, int mid, int right, int[] 
 #### 2. 퀵 정렬(Quick Sort)
 퀵 정렬은 이름대로 정렬 알고리즘 중에서 평균적으로 가장 빠른 알고리즘입니다. 그리고 병합 정렬과 비교해서 임시 배열도 사용하지 않습니다. 하지만 최악의 시간 복잡도는 O(N^2)이라는 단점을 가지고 있습니다.
 
-퀵 정렬은 병합 정렬과 같이 분할 정복 방식으로 동작합니다. 하지만 병합 정렬처럼 반으로 균등하게 나누는 것이 아닌 pivot을 기준으로 비균등하게 나뉩니다. pivot의 위치는 pivot의 왼쪽은 모두 pivot보다 작은 값이고, 오른쪽은 모두 pivot보다 큰 값입니다. 즉 pivot은 정렬된 위치를 가리키며, 이를 찾는 과정을 `partition`이라고 합니다. 퀵 정렬은 이처럼 `partition`을 통해 pivot을 찾고, 이 pivot을 기준으로 왼쪽과 오른쪽으로 분할합니다. 여기서 pivot은 이미 정렬된 위치에 있으므로 제외합니다. 이 분할된 공간에서 다시 `partition`을 통해 pivot을 찾는 과정을 재귀적으로 반복합니다.
+퀵 정렬은 병합 정렬과 같이 분할 정복 방식으로 동작합니다. 하지만 병합 정렬처럼 반으로 균등하게 나누는 것이 아닌 pivot을 기준으로 비균등하게 나뉩니다. pivot의 위치는 pivot의 왼쪽은 모두 pivot보다 작은 값이고, 오른쪽은 모두 pivot보다 큰 값입니다. 즉 pivot은 정렬된 위치를 가리키며, 이를 찾는 과정을 `partition`이라고 합니다. 퀵 정렬은 이처럼 `partition`을 통해 pivot을 찾고, 이 pivot을 기준으로 왼쪽과 오른쪽으로 분할합니다. 여기서 pivot은 이미 정렬된 위치에 있으므로 제외합니다. 이 분할된 공간에서 다시 `partition`을 통해 pivot을 찾는 과정을 재귀적으로 반복합니다.
 
 ![퀵 정렬 모습](./images/quick_sort.gif)
 
