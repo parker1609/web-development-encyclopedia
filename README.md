@@ -93,6 +93,9 @@
     - Q. 롬복(Lombok)이 생성하는 메서드가 만들어지는 시점
     - Q. JUnit의 생명주기에 설명하시오.
 - [C++]()
+- [Javascript](https://github.com/CODEMCD/technical-interview-speaking/blob/master/Javascript/README.md)
+    - Q. 기본 문법
+    - Q. ES6(ECMAScript 6)
 
 ### Software Engineering
 - [객체지향 프로그래밍](https://github.com/CODEMCD/technical-interview-speaking/blob/master/OOP/README.md)
