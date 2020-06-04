@@ -1,7 +1,7 @@
 # Spring Framework 관련 질문
 
 ## 목차
-- [Q. Spring Framework를 사용하는 이유](#q-spring-framework를-사용하는-이유)
+- [Q. Spring Framework란?](#q-spring-framework란)
 - [Q. Spring IoC 컨테이너](#q-spring-ioc-컨테이너)
 - [Q. Spring Bean](#q-spring-bean)
 - [Q. Bean Factory VS Application Context](#q-bean-factory-vs-application-context)
@@ -10,8 +10,25 @@
 - [Q. Spring Framework VS Spring Boot](#q-spring-framework-vs-spring-boot)
 
 
-## Q. Spring Framework를 사용하는 이유
-스프링 프레임워크는 의존성 관리를 프레임워크가 해주기 때문에 쉽게 유연성있는 코드를 구현할 수 있습니다. 그리고 로깅, 보안, 트랜잭션, 에러 처리 등 애플리케이션에 필요한 여러 공통 기능을 제공해주어 쉽게 기능을 추가할 수 있습니다.
+## Q. Spring Framework란?
+스프링 프레임워크는 **자바 엔터프라이즈 개발을 편하게 해주는 오픈소스 경량급 애플리케이션 프레임워크**입니다.
+
+> 자바 플랫폼, 엔터프라이즈 에디션(Java Platform, Enterprise Edition; Java EE)은 자바를 이용한 서버측 개발을 위한 플랫폼이다. Java EE 플랫폼은 PC에서 동작하는 표준 플랫폼인 Java SE에 부가하여, 웹 애플리케이션 서버에서 동작하는 장애복구 및 분산 멀티티어를 제공하는 자바 소프트웨어의 기능을 추가한 서버를 위한 플랫폼이다. 이전에는 J2EE라 불리었으나 버전 5.0 이후로 Java EE로 개칭되었다. - [위키백과](https://ko.wikipedia.org/wiki/%EC%9E%90%EB%B0%94_%ED%94%8C%EB%9E%AB%ED%8F%BC,_%EC%97%94%ED%84%B0%ED%94%84%EB%9D%BC%EC%9D%B4%EC%A6%88_%EC%97%90%EB%94%94%EC%85%98) -
+
+스프링 프레임워크는 애플리케이션 프레임워크로서 로깅, 트랜잭션, 보안, 에러 처리 등 애플리케이션을 개발하는데 필요한 전 영역을 제공해주는 프레임워크입니다. 이에 더해 IoC/DI 기술로 의존성을 프레임워크에서 관리하여 개발자 입장에서 쉽게 객체지향을 기반한 유연한 코드를 작성할 수 있도록 도와줍니다.
+
+경량급이라는 것은 스프링이 작은 규모라는 의미가 아닌 불필요한 의존이 없다는 것입니다. 스프링은 단순한 서버환경인 톰캣(Tomcat)이나 제티(Jetty)에서도 완벽하게 동작합니다.
+
+스프링 프레임워크는 오픈소스로 개발되며 많은 사람이 참여하고 있어 이슈가 빠르게 발견됩니다. 그리고 스프링 개발자는 기업에 속해 있어 기존 오픈소스의 문제점이었던 개인 개발자에 의존이 심했던 것을 해결하여 발생한 문제에 대해 빠르게 해결해나아가고 있습니다.
+
+스프링 프레임워크의 핵심 기능은 IoC/DI, AOP, PSA(Portable Service Abstraction) 세 가지입니다. 이 세 가지 기능을 바탕으로 스프링 프레임워크는 POJO로 개발할 수 있도록 만들었습니다.
+
+![스프링 핵심 기능과 POJO](./images/spring_main_features.png)
+출처: 토비의 스프링 3.1 Vol.1
+
+POJO(Plain Old Java Object)는 순수 자바 객체라는 의미로 마틴 파울러가 만든 용어입니다. POJO는 **객체지향적이면서, 환경과 기술에 종속되지 않고 필요에 따라 재활용될 수 있는 방식으로 설계된 오브젝트**입니다.
+
+스프링 프레임워크가 관리하는 Spring Bean이 POJO를 만족하는 객체를 말합니다. POJO로 개발하는 것의 장점은 객체에 외부 환경과 기술에 관련된 코드가 없어 깔끔하고 복잡하지 않습니다. 따라서 디버깅과 테스트하기 쉽습니다. 또한 객체지향적으로 설계할 수 있어 유연한 코드를 만들 수 있습니다.
 
 
 ## Q. Spring IoC 컨테이너
@@ -36,9 +53,22 @@ DI는 `@Autowired` 어노테이션을 사용하며 세 가지 방법이 있습�
 
 
 ## Q. Spring Bean
-Bean은 POJO(Plain Old Java Object)이고, IoC 컨테이너에서 관리되는 객체를 말합니다. Bean은 Spring 애플리케이션에서 핵심적인 객체입니다.
+Spring Bean은 스프링 프레임워크에서 관리되는 객체를 말합니다. 좀 더 정확히 말하면 IoC 컨테이너에서 관리되며, POJO(Plain Old Java Object)인 상태의 객체입니다.
 
-POJO는 순수한 자바 객체를 뜻하며, 특정 기술에 의존하지 않는 객체를 말합니다. 하지만 뜻이 애매한 부분이 많으므로 토비의 스프링 책에서는 객체지향적인 원리에 충실한 객체라고 표현하기도 합니다.
+POJO는 순수한 자바 객체를 뜻하며, 특정 기술에 의존하지 않는 객체를 말합니다. 이 용어는 마틴 파울러를 중심으로 사용하기 시작하였으며, 토비의 스프링 책에서는 객체지향적인 원리에 충실한 객체로 표현하기도 합니다.
+
+### Bean 생성 방법
+스프링 부트 빈 생성관련해서 실제 코드와 함께 블로그 글 작성하기, 번외로 스프링 부트가 아닌 스프링에서 빈 생성을 작성하여 비교하기
+- <https://lazymankook.tistory.com/67>
+- <https://cbw1030.tistory.com/54>
+- <https://jeong-pro.tistory.com/167>
+- <https://gmlwjd9405.github.io/2018/11/10/spring-beans.html>
+- <https://tomining.tistory.com/74>
+
+
+#### Bean 생성 시 순환참조 해결법
+
+### Bean Scope
 
 Bean은 싱글톤 패턴으로 생성되는데, 프로그램에서 단 하나의 객체만 존재하는 것입니다. 이와 같은 이유는 Spring Framework는 대부분 서버 환경을 위한 애플리케이션으로 많은 사용자가 있다는 것을 가정합니다. 이러한 많은 사용들이 요청에 따라 객체를 만든다면 많은 과부화가 예상되어 싱글톤으로 만들었습니다.
 
