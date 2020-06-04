@@ -129,3 +129,101 @@
 - 성능을 개선해본 경험
 
 
+## 웹 백엔드
+- 분산된 환경에서 테스트하는 방법
+- 분산된 황경에서 로깅하는 방법
+- 서버 모니터링 구성
+- 서버 부하 테스트
+- 아파치
+- 엔진엑스
+- 로드밸런싱
+- 마이크로 서비스와 모놀리틱
+- 메시지 큐
+- 소켓
+- Docker
+
+
+## 기술 키워드
+- 트랜잭션
+- OSI 7계층
+- 자바 컴파일 과정
+- 프로세스, 스레드
+- JVM 메모리 구조
+- JVM GC
+- stop-the-world
+- JVM
+- Domain
+- Call by value, Call by reference
+- Statement, PreparedStatement
+- Deep copy, Shallow Copy
+- Filter, Interceptor
+- Enum
+- JDBC
+- CI, CD
+- AOP
+- 동기, 비동기
+- HTTP 캐싱
+- HTTP 쿠키
+- 쿠키, 세션
+- @ExceptionHandler, @ControllerAdvice
+- @Transactional
+- 제네릭
+- Overriding, Overloading
+- ThreadLocal
+- 전략 패턴
+- 파사드 패턴
+- 템플릿 메서드 패턴
+- 싱글턴 패턴
+- String, StringBuilder, StringBuffer
+- 라이브러리, 프레임워크
+- HTTP Methods(GET, POST, PUT, DELETE, PATCH, HEAD, OPTIONS)
+- equals, hashcode
+- 어노테이션
+- JPA
+- 직렬화
+- 암호화(대칭키, 비대칭키)
+- Redis
+- Argument Resolver
+- 인증, 인가
+- Spring Data JPA
+- 단위 테스트
+- @Component, @Bean
+- 운영체제
+- PSA
+- 의존성
+- 객체지향
+- Daemon Thread
+- synchronized
+- API
+- stream
+- lambda
+- optional
+- 리플렉션
+- Bean, BeanFactory
+- 추상 클래스, 인터페이스
+- 라우터
+- SSL
+- DNS
+- 프로토콜
+- SOLID
+- bit, byte
+- Spring Boot
+- Checked Exception, Unchecked Exception
+- 동등성, 동일성
+- VO, DTO
+- Servlet
+- Comparable, Comparator
+- REST
+- DB 인덱싱
+- DB 정규화
+- OAuth
+- CORS
+- HTTP, HTTPS
+- TCP, UDP
+- Reverse Proxy
+- JWT
+- 해시
+- IoC, DI
+- N + 1 문제
+- 영속성 컨텍스트
+- JPA OSIV
