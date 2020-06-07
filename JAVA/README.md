@@ -412,16 +412,296 @@ Enum을 사용하면 데이터에 대한 가독성과 관리가 훨씬 쉬워진
 
 
 ## Q. Thread
-- <https://wikidocs.net/230>
-- <https://raccoonjy.tistory.com/15>
+자바는 기본적으로 쓰레드 기준으로 동작합니다. 쓰레드는 프로세스의 흐름 단위입니다. 한 프로세스 내에서 여러 쓰레드를 만들 수 있고 자원을 공유할 수 있습니다. 자바는 JVM의 도움으로 쉽게 쓰레드를 관리할 수 있습니다. 그 외에도 데몬 쓰레드, 쓰레드 로컬과 같은 여러 기능을 제공합니다. 
+
+### Thread 생성
+자바에서 쓰레드를 생성하는 방법은 크게 두 가지입니다.
+1. `Thread` 클래스 상속
+2. `Runnable` 인터페이스 구현
+
+#### 1. `Thread` 클래스 상속
+
+```java
+public class Test extends Thread {
+    int seq;
+
+    public Test(int seq) {
+        this.seq = seq;
+    }
+
+    @Override
+    public void run() {
+        System.out.println(this.seq + " thread start.");
+        try {
+            Thread.sleep(1000);
+        } catch (Exception e) {
+            // Exception 처리
+        }
+        System.out.println(this.seq + " thread end.");
+    }
+
+    public static void main(String[] args) {
+        List<Thread> threads = new ArrayList<>();
+        for (int i=0; i<10; ++i) {
+            Thread t = new Test(i);
+            t.start();
+            threads.add(t);
+        }
+
+        for (int i=0; i<threads.size(); ++i) {
+            Thread t = threads.get(i);
+            try {
+                t.join();
+            } catch (Exception e) {
+                // Exception 처리
+            }
+        }
+        System.out.println("Main thread end.");
+    }
+}
+```
+
+- `run()` 메서드는 해당 쓰레드의 동작을 정의하는 것입니다.
+- `sleep()` 메서드는 주어진 인자(ms) 시간동안 아무 작업도 하지 않도록 합니다.
+- `start()` 메서드는 해당 쓰레드를 실행시킵니다. 위에서 `start()`를 호출하면 아래와 같이 동작합니다.
+    - main 쓰레드에서 새로운 쓰레드의 `start()`를 호출합니다.
+    - `start()` 메서드는 해당 쓰레드가 작업을 수행할 호출 스택을 새로 생성합니다.
+    - 생성된 호출 스택에 `run()` 메서드를 호출하여 정의된 동작을 수행합니다.
+    - 새로운 호출 스택은 스케줄러에 따라 수행됩니다.
+- `join()`은 해당 쓰레드가 종료될 때까지 기다리는 메서드입니다. 만약 `join()`이 없었다면 생성된 쓰레드가 모두 종료하기 전에 main 쓰레드가 종료될 수 있습니다. `join()`은 쓰레드가 종료 후 다음 로직을 수행하기 위해서는 반드시 선언해주어야 합니다.
+
+```
+0 thread start.
+5 thread start.
+2 thread start.
+6 thread start.
+9 thread start.
+1 thread start.
+7 thread start.
+3 thread start.
+8 thread start.
+4 thread start.
+0 thread end.
+5 thread end.
+2 thread end.
+9 thread end.
+6 thread end.
+1 thread end.
+7 thread end.
+4 thread end.
+8 thread end.
+3 thread end.
+main end.
+```
+
+#### 2. `Runnable` 인터페이스 구현
+
+```java
+public class Test implements Runnable {
+    // 위 Thread 클래스 상속과 동일
+
+    public static void main(String[] args) {
+        List<Thread> threads = new ArrayList<>();
+        for (int i=0; i<10; ++i) {
+            Thread t = new Thread(new Test(i));
+            t.start();
+            threads.add(t);
+        }
+
+        for (int i=0; i<threads.size(); ++i) {
+            Thread t = threads.get(i);
+            try {
+                t.join();
+            } catch (Exception e) {
+                // Exception 처리
+            }
+        }
+        System.out.println("Main thread end.");
+    }
+}
+```
+
+`Thread` 클래스 상속과 `Runnable` 인터페이스 구현의 다른 점은 쓰레드를 생성하는 방법이다.
+
+```java
+Thread t = new Thread(new Test(i));
+```
+
+일반적으로 `Thread` 클래스 상속보다 `Runnable` 인터페이스 구현을 사용합니다. 인터페이스를 구현하는 것이 다중 상속을 할 수 있고, `run()` 메서드 구현을 강제하는 등 장점을 가지고 있기 때문입니다. 인터페이스를 구현하는 것이 상속보다 좀 더 코드를 유연하게 구현할 수 있습니다.
+
 
 ### Daemon Thread
-- <https://cornswrold.tistory.com/195>
+데몬 쓰레드는 주 쓰레드의 작업을 돕는 보조적인 역할을 하는 쓰레드입니다. 따라서 주 쓰레드가 종료되면 자동으로 데몬 쓰레드는 종료됩니다. 데몬 쓰레드는 일반적으로 아래의 역할로 사용합니다.
+- GC(가비지 컬렉터)
+- 메인 쓰레드(`main()`이 동작하는 쓰레드)
+- 워드 프로세서 자동 저장
+- 미디어 플레이어의 동영상 및 음악 재생
+- ...
 
-### synchronized
-- <https://tourspace.tistory.com/54>
+데몬 쓰레드를 만드는 방법은 `Thread` 생성 후 `start()` 메서드를 호출하기 전에 `setDaemon(true)`를 호출하는 것입니다.
+
+### 쓰레드 우선 순위(Priority)
+JVM에서 두 개 이상의 쓰레드가 동작한다면 우선 순위에 따라 우선 순위가 높은 쓰레드에게 우선권이 주어집니다. JVM의 스케줄링 규칙은 다음과 같습니다.
+- **우선 순위 기반**
+- 동일한 우선 순위는 라운드 로빈(RR) 기반
+
+자바는 쓰레드의 다음과 같은 우선 순위를 설정하는 상수를 제공합니다.
+- `static final int MAX_PRIORITY`: 우선 순위 10(가장 높은 우선 순위)
+- `static final int MIN_PRIORITY`: 우선 순위 1(가장 낮은 우선 순위)
+- `static final int NORM_PRIORITY`: 우선 순위 5(기본 우선 순위)
+
+`main()`이 동작하는 메인 쓰레드의 초기 우선 순위 값은 기본 우선 순위인 5입니다.
+
+쓰레드의 우선 순위는 `Thread.setPriority(int priority)` 메서드를 호출하여 설정할 수 있습니다. 현재 우선 순위를 알고 싶다면 `Thread.getPriority()` 메서드로 확인할 수 있습니다.
+
+### `synchronized`
+두 개 이상의 쓰레드를 사용한다면 공유 자원을 관리하는 데 문제점이 발생합니다. 크게 임계 영역 문제와 데드락 문제가 발생합니다. 이를 해결해주는 전통적인 방법이 세마포이며, 자바에서는 이를 `synchronized` 키워드로 구현했습니다.
+
+`synchronized` 키워드의 사용 방법은 두 가지 입니다.
+1. `synchronized` 키워드를 메서드에 선언
+
+```java
+public synchronized void test() {
+    // do something...
+}
+```
+
+2. `synchronized` block 사용
+
+```java
+public void test() {
+    synchronized(this) {
+        // do something...
+    }
+}
+```
+
+`synchronized` 키워드를 메서드에 선언하게 되면 **메서드뿐 아니라 이 메서드를 포함하고 있는 객체도 lock**이 걸립니다. 따라서 일반적으로 두 번째 방법인 `synchronized` block을 사용합니다. 이는 block 그 자체에만 lock이 걸립니다.
 
 ### ThreadLocal
+ThreadLocal은 쓰레드 단위로 로컬 변수를 할당하는 기능입니다.(일반 변수의 기본 수명은 코드 블럭({})입니다.) 이는 해당 **쓰레드 내부에서 전역 변수를 사용**하는 것과 동일한 역할을 할 수 있습니다. 
+
+ThreadLocal의 사용법은 매우 간단합니다.
+- `ThreadLocal` 객체 생성
+- `set()` 메서드로 값 할당
+- `get()` 메서드로 값 읽기
+- `remove()` 메서드로 값 삭제
+
+그러면 ThreadLocal이 실제로 각 쓰레드마다 다른 로컬 변수로 사용할 수 있는지 예제를 통해 살펴보겠습니다. Main, A, B 3개의 쓰레드에서 공통의 `ThreadLocal` 변수를 할당하여 각 쓰레드마다 고유의 값을 가지고 있는지 확인해보겠습니다.
+
+- ThreadLocal
+
+```java
+public class ThreadLocalVO {
+    private static final ThreadLocal<String> tl = new ThreadLocal<>();
+
+    public static void set(String str) {
+        tl.set(str);
+    }
+
+    public static String get() {
+        return tl.get();
+    }
+
+    public static void remove() {
+        tl.remove();
+    }
+}
+```
+
+쓰레드에서 ThreadLocal을 만들어 사용할 수 있는 객체입니다.
+
+- A Thread
+
+```java
+public class AThread implements Runnable {
+
+    @Override
+    public void run() {
+        ThreadLocalVO.set("A thread local value!!");
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(ThreadLocalVO.get());
+    }
+}
+```
+
+- B Thread
+
+```java
+public class BThread implements Runnable {
+
+    @Override
+    public void run() {
+        ThreadLocalVO.set("B thread local value!!");
+
+        System.out.println(ThreadLocalVO.get());
+    }
+}
+```
+
+- Main Thread
+
+```java
+public class MainThread {
+    public static void main(String[] args) {
+        Thread a = new Thread(new AThread());
+        Thread b = new Thread(new BThread());
+
+        ThreadLocalVO.set("Main Thread Local Value!!");
+
+        a.start();
+        b.start();
+
+        try {
+            a.join();
+            b.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(ThreadLocalVO.get());
+        System.out.println("main thread end.");
+    }
+}
+```
+
+먼저 A Thread의 `run()` 내부에 ThreadLocal 객체에 새로운 값을 할당한 후 1초를 대기하는 기능을 넣었습니다. 따라서 예상되는 쓰레드 동작 순서는 다음과 같을 것입니다.
+
+1. [Main Thread] ThreadLocal 값 할당
+2. [A Thread] ThreadLocal 값 할당
+3. [B Thread] ThreadLocal 값 할당
+4. [B Thread] ThreadLocal 값 출력
+5. [A Thread] ThreadLocal 값 출력
+6. [Main Thread] ThreadLocal 값 출력
+
+`ThreadLocalVO`는 일반적인 시각으로 보면 static이므로 전체 쓰레드 중 하나가 생성되는 객체로 볼 수 있습니다. 하지만 내부의 변수는 `ThreadLocal`을 가지고 있으므로 각 쓰레드마다 각각의 값을 할당합니다. 위 코드의 결과는 예상했던 동작과 동일한 것을 볼 수 있습니다.
+
+```
+B thread local value!!
+A thread local value!!
+Main Thread Local Value!!
+main thread end.
+```
+
+ThreadLocal의 주요 용도는 다음과 같습니다.
+- **사용자 인증 정보 전파**: Spring Security는 ThreadLocal을 사용하여 사용자 인증 정보를 전파합니다.
+- **트랜잭션 컨텍스트 전파**: TransactionManager는 ThreadLocal을 사용하여 Transaction Context를 전파합니다.
+- **쓰레드에 안전해야 하는 데이터 보관**
+- ...
+
+ThreadLocal을 사용할 때 주의할 점은 **Thread Pool** 환경인 경우입니다. 쓰레드 풀은 쓰레드를 재활용하기 때문에 이전에 사용한 쓰레드의 ThreadLocal 값이 남아있게 됩니다. 따라서 쓰레드 풀 환경에서는 쓰레드를 사용한 후에는 ThreadLocal 값을 반드시 삭제해주어야 합니다.
+
+### Reference
+- <https://wikidocs.net/230>
+- <https://raccoonjy.tistory.com/15>
+- <https://cornswrold.tistory.com/195>
+- <https://tourspace.tistory.com/54>
 - <https://javacan.tistory.com/entry/ThreadLocalUsage>
 - <https://velog.io/@skygl/ThreadLocal>
 
