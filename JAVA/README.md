@@ -356,4 +356,164 @@ HashMap은 해시 함수를 사용한 Map 자료구조입니다. 해시를 사�
 롬복은 AnnotationProcessor을 이용하는데, 이는 컴파일 시점에 Annotation별로 코드를 생성하는 역할을 합니다. 따라서 롬복 역시 컴파일 시점에 생성됩니다.
 
 
-## Q. JUnit의 생명주기에 설명하시오.
+## Q. Enum
+Enum은 열거형(enumerated type)으로 **서로 연관된 상수들의 집합**입니다.
+
+```java
+enum Fruit{
+    APPLE, PEACH, BANANA;  // 0, 1, 2
+}
+enum Company{
+    GOOGLE, APPLE, ORACLE; // 0, 1, 2
+}
+```
+
+C/C++, Java 둘 다 위처럼 Enum을 사용할 수 있고, 기본적으로 int형으로 매칭됩니다. Enum을 사용하여 얻을 수 있는 장점은 다음과 같습니다.
+
+- 문자열과 비교해, **IDE의 적극적인 지원**을 받을 수 있습니다.
+    - 자동완성, 오타검증, 텍스트 리팩토링 등등
+- 허용 가능한 값들을 제한할 수 있습니다.
+- **리팩토링시 변경 범위가 최소화** 됩니다.
+    - 내용의 추가가 필요하더라도, Enum 코드외에 수정할 필요가 없습니다.
+
+하지만 Java에서 Enum은 다른 언어와 달리 완전히 **Class로서의 기능을 사용**할 수 있습니다.
+
+```java
+@AllArgsConstructor
+@Getter
+public enum OpenRange {
+    ALL(0),
+    ONLY_FRIEND(1),
+    NONE(2);
+
+    private Integer openRange;
+
+    public static OpenRange of(Integer openRange) {
+        return Arrays.stream(values())
+                .filter(or -> openRange.equals(or.openRange))
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new)
+                ;
+    }
+}
+```
+
+위 예제처럼 Java에서 Enum은 클래스와 동일하게 사용가능합니다. 이로써 장점은 다음과 같습니다.
+1. 데이터들 간의 연관관계 표현
+2. 상태와 행위를 한곳에서 관리
+3. 데이터 그룹관리
+4. 관리 주체를 DB에서 객체로
+
+Enum을 사용하면 데이터에 대한 가독성과 관리가 훨씬 쉬워진다는 것으로 정리할 수 있습니다.
+
+### Reference
+- [Java Enum 활용기](https://woowabros.github.io/tools/2017/07/10/java-enum-uses.html)
+- [열거형(enum)](https://opentutorials.org/course/2517/14151)
+
+
+## Q. Thread
+- <https://wikidocs.net/230>
+- <https://raccoonjy.tistory.com/15>
+
+### Daemon Thread
+- <https://cornswrold.tistory.com/195>
+
+### synchronized
+- <https://tourspace.tistory.com/54>
+
+### ThreadLocal
+- <https://javacan.tistory.com/entry/ThreadLocalUsage>
+- <https://velog.io/@skygl/ThreadLocal>
+
+
+## Q. `equals`, `hashCode`
+### `equals()`
+`equals()`는 자바에서 객체의 동등성을 검사하기 위함입니다. 
+
+> - 동일성: 두 객체의 **주소값이 같으면** 동일하다고 합니다.
+> - 동등성: 두 객체의 **내용이 같으면** 동등하다고 합니다.
+
+자바는 `equals()`를 오버라이딩하여 구현하여야 동등성을 검사할 수 있습니다. 이를 오버라이딩하지 않으면 `Object.equals()`가 동작하는데, 이는 동등성이 아닌 동일성을 검사하게 됩니다. (`equals()`의 예제는 아래 `Person` 클래스에서 볼 수 있습니다.)
+
+### `hashCode()`
+`hashCode()`는 객체를 식별하기 위해 정수인 해시값을 말합니다. 이는 Collection 중 `HashMap, HashSet, HashTable`과 같은 해시 자료구조의 키로 객체를 사용할 때 해당 객체의 `hashCode()` 를 호출하게 됩니다. 위의 해시 자료구조가 객체의 키를 비교할 때는 다음 그림과 같습니다.
+
+![해시 자료구조 키 비교](./images/hashcode.png)
+출처: <https://minwan1.github.io/2018/07/03/2018-07-03-equals,hashcode/#equals>
+
+예를 들어 `Person` 객체가 아래와 같이 있다고 합시다.
+
+```java
+public class Person {
+    private int age;
+    private String name;
+
+    public Person(int age, String name) {
+        this.age = age;
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Person)) return false;
+        Person person = (Person) o;
+        return getAge() == person.getAge() &&
+                Objects.equals(getName(), person.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getAge(), getName());
+    }
+}
+```
+
+위는 `equals()`와 `hashCode()`를 모두 오버라이딩했지만 만약 둘 중 하나라도 구현되어 있지 않다면 `HashSet`은 아래와 같이 동작할 것입니다.
+
+```java
+Person person1 = new Person(20, "park");
+Person person2 = new Person(20, "park");
+
+Set<Person> uniquePerson = new HashSet<>();
+uniquePerson.add(person1);
+uniquePerson.add(person2);
+assertThat(uniquePerson.size()).isEqualTo(2);
+```
+
+하지만 `equals()`와 `hashCode()`가 둘다 오버라이딩되어 있다면 정상적으로 아래와 같이 동작할 것입니다.
+
+```java
+Person person1 = new Person(20, "park");
+Person person2 = new Person(20, "park");
+
+Set<Person> uniquePerson = new HashSet<>();
+uniquePerson.add(person1);
+uniquePerson.add(person2);
+assertThat(uniquePerson.size()).isEqualTo(1);
+```
+
+
+## Q. Annotation
+- <http://www.nextree.co.kr/p5864/>
+
+
+## Q. 직렬화
+- <https://woowabros.github.io/experience/2017/10/17/java-serialize.html>
+
+
+## Q. Reflection
+- <https://medium.com/msolo021015/%EC%9E%90%EB%B0%94-reflection%EC%9D%B4%EB%9E%80-ee71caf7eec5>
+
+
+## Q. `Comparable`과 `Comparator`
+- <https://jeong-pro.tistory.com/173>
+- <https://defacto-standard.tistory.com/90>

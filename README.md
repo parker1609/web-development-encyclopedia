@@ -1,11 +1,13 @@
 # Technical Speaking For Web Developer
 > 웹 개발을 학습하면서 관련 개념에 대해 설명할 수 있을 정도로 정리하는 공간입니다.
 
+
 ## 개요
 > 이 공간은 학습 방법 중 하나인 누군가에게 설명하듯이 공부하는 것을 연습하는 곳입니다. 배운 것을 그대로 말하기보다 정리하여 이해하기 쉽고 논리적으로 말하기 위해 노력할 것입니다.
 
 - **말로 표현하지 못하면 아는 것이 아니다.**
 - [파인만과 아인슈타인의 일화 - 완벽하게 이해한 후 쉽게 가르쳐라](http://m.blog.daum.net/kdh5029/8289311?tp_nil_a=1)
+
 
 ## 목표
 - **학습한 지식을 간단, 명료하게 정리하여 설명할 수 있는 능력**
@@ -15,12 +17,12 @@
 
 
 ## 기술 면접
-- [기술 면접 시작하기](https://github.com/CODEMCD/technical-interview-speaking/blob/master/Tip/Tech-Interview-start.md)
+- [기술 면접 시작하기](https://github.com/CODEMCD/tech-speaking-for-web-developer/blob/master/Tech-Interview/Tech-Interview-start.md)
     - 면접을 위한 자기소개서 작성법
     - 기술 면접에서 평가하는 것
     - 말하기
     - 문제 해결하기(코딩, 설계 등)
-- [면접 질문 리스트](https://github.com/CODEMCD/technical-interview-speaking/blob/master/Tip/Interview-Question-List.md)
+- [면접 질문 리스트](https://github.com/CODEMCD/tech-speaking-for-web-developer/blob/master/Tech-Interview/Interview-Question-List.md)
 
 
 ## QnA

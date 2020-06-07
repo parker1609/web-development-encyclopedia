@@ -83,6 +83,7 @@ HTTP의 특징은 비연결적이고 무상태입니다. 이는 한번 요청과
 
 HTTP는 기본적으로 TCP/IP 통신 위에서 동작하며 80번 포트를 사용합니다.
 
+- <https://developer.mozilla.org/ko/docs/Web/HTTP>
 
 ## Q. REST API(Restful API)
 REST API는 REST 제약조건을 준수하는 API를 말합니다. REST 제약조건은 서버-클라이언트 구조, 캐시 처리 가능, 무상태, 계층화, code-on-demand, 인터페이스 일관성이 있습니다. 이러한 규칙을 지킨다면(특히 인터페이스 일관성) 하위 호환성을 높일 수 있고, 독립적인 진화가 가능합니다. 따라서 REST 제약조건을 준수한 API는 API가 변경된다고 해도 클라이언트에 영향을 미치지 않습니다.
