@@ -783,8 +783,38 @@ assertThat(uniquePerson.size()).isEqualTo(1);
 
 
 ## Q. Annotation
-- <http://www.nextree.co.kr/p5864/>
+어노테이션은 자바 5버전에 추가된 기능으로 단어의 뜻은 '주석'이지만 그 이상의 역할을 합니다.
 
+어노테이션은 자바의 기능 중 리플렉션(Reflection)과 함께 사용하면서 소스 코드에 메타데이터(MetaData)를 삽입할 수 있습니다. 즉 **어노테이션이 붙은 코드는 "어떠한 객체와 연결되어있다.", "어떤 역할을 한다."를 나타내며, 리플렉션을 사용해서 실제로 설정한 역할을 코드로 수행**할 수 있도록 합니다.
+
+그러면 어노테이션의 사용법을 살펴보겠습니다.
+
+```java
+@Retention(용도)
+@Target(범위)
+public @interface 어노테이션_이름 {
+    // ...
+}
+```
+
+- **용도**: 
+    - `RetentionPolicy.SOURCE`: 컴파일러가 사용하고 클래스 파일 안에 포함 안됨
+    - `RetentionPolicy.CLASS`: 컴파일시 클래스 파일 안에 포함되나 JVM에서 무시
+    - `RetentionPolicy.RUNTIME`: 컴파일시 포함되고 JVM에서 인식하여 런타임 환경에서 사용 가능
+- **범위**: 어노테이션이 적용될 범위를 나타냅니다. 범위 밖의 어노테이션은 무시됩니다.
+    - `ElementType.TYPE`: 클래스, 인터페이스, Annotation, 열거형 타입
+    - `ElementType.FIELD`: 필드 또는 열거형 타입
+    - `ElementType.METHOD`: 메서드
+    - `ElementType.PARAMETER`: 메서드의 인자
+    - ...
+
+위와 같이 선언된 어노테이션이 붙은 코드를 가져와서 로직을 수행할 때 리플렉션을 사용합니다. 리플랙션으로 어노테이션이 붙은 코드를 확인하기 위해 `.getAnnotations()` 과 같은 메서드를 제공합니다.
+
+어노테이션과 리플렉션을 활용하는 대표적인 예가 AOP입니다. 그 중에서 Spring Framework의 `@Transactional`이 있습니다. 이는 비즈니스 로직에 속하지는 않지만 부가적인 기능을 수행하기 위해 여러 곳에 중복되어 나타납니다. 이를 해결하려는 것이 AOP였고, 대표적인 구현 방식이 어노테이션과 리플랙션을 사용하는 것입니다.
+
+### Reference
+- <http://www.nextree.co.kr/p5864/>
+- <https://blog.naver.com/kang594/39704853>
 
 ## Q. 직렬화
 - <https://woowabros.github.io/experience/2017/10/17/java-serialize.html>
