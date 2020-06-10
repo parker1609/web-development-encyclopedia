@@ -97,7 +97,7 @@ REST API는 REST 제약조건을 준수하는 API를 말합니다. REST 제약�
 - 인터페이스 일관성
 
 REST API는 HTTP를 기반으로 하기 때문에 인터페이스 일관성을 제외하고는 개발자가 신경쓰지 않고도 준수할 수 있습니다. 인터페이스 일관성의 조건은 다음과 같습니다.
-1. 리소스는 URL로 식별하며, 동사로 표현한다.
+1. 리소스는 URL로 식별하며, 명사로 표현한다.
 2. 리소스에 대한 작업은 HTTP 메서드로 표현한다.
 3. 메시지는 스스로를 설명해야 한다.
 4. Hypermedia As The Engine Of Application State(HATEOAS)
@@ -190,7 +190,7 @@ HTTP는 비연결성이므로 상태를 저장할 수 없는 무상태라는 특
 
 HTTP 요청은 기본적으로 Cross-Site HTTP 요청이 가능합니다. `<img>`로 다른 도메인의 이미지를 가져오거나, `<link>`로 다른 도메인의 CSS 파일을 가져오거나, `<script>`로 다른 도메인의 Javascript 라이브러리를 가져오는 것이 가능합니다. 하지만 `<script></script>`로 둘러싸인 스크립트는 **Same-Origin Policy**를 따르기 때문에 Cross-Site HTTP 요청이 불가능합니다. 
 
-> Same-Origin Policy이란, 프로토콜, 포트, 호스트 모두가 같은 동일한 출처의 요청만 가능한 정책을 말합니다.
+> Same-Origin Policy이란, 프로토콜, 호스트 모두가 같은 동일한 출처의 요청만 가능한 정책을 말합니다.
 
 AJAX가 널리 사용되면서 `<script></script>`로 생성되는 `XMLHttpRequest`에 대해서도 Cross-Site HTTP 요청이 가능해야 한다는 요구가 늘어나자 **W3C에서 CORS라는 권고안이 나오게 됩니다.**
 
