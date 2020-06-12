@@ -4,6 +4,7 @@
 - [Q. Call By Value VS Call By Reference](#q-call-by-value-vs-call-by-reference)
 - [Q. 얕은 복사(Shallow Copy) VS 깊은 복사(Deep Copy)](#q-얕은-복사shallow-copy-vs-깊은-복사deep-copy)
 - [Q. 기본 자료형(primitive data type)과 참조 자료형(reference data type)](#q-기본-자료형primitive-data-type과-참조-자료형reference-data-type)
+- [Q. 동일성과 동등성](#q-동일성과-동등성)
 
 ## Q. Call By Value VS Call By Reference
 함수를 호출할 때 매개변수로 전달되는 값의 종류에 따라 call by value, call by reference로 나뉩니다. value는 원본 값을 그대로 복사하므로, caller 함수에서의 변화가 원본에 영향을 미칠 수 없습니다. 반면에 reference는 원본의 주소값을 복사하여 전달하므로, caller 함수에서 원본에 영향을 줄 수 있습니다.

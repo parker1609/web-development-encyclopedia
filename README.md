@@ -33,9 +33,11 @@
     - Q. HTTP
     - Q. REST API(Restful API)
     - Q. 쿠키와 세션
-    - Q. 인증 방식
-    - Q. 브라우저의 동작 과정
-- [Backend]()
+    - Q. 인증 방식    
+    - Q. CORS(Cross-Origin Resource Sharing)
+    - Q. 서버 사이드 렌더링 VS 클라이언트 사이드 렌더링
+    - Q. Proxy
+- [Backend](https://github.com/CODEMCD/tech-speaking-for-web-developer/blob/master/Backend/README.md)
 
 ### Computer Science
 - [운영체제](https://github.com/CODEMCD/technical-interview-speaking/blob/master/OS/README.md)
@@ -55,7 +57,7 @@
     - Q. 트랜잭션(Transaction)
     - Q. SQL Injection
     - Q. NoSQL
-- [네트워크]()
+- [네트워크](https://github.com/CODEMCD/tech-speaking-for-web-developer/blob/master/Network/README.md)
 - [자료구조](https://github.com/CODEMCD/technical-interview-speaking/blob/master/DataStructure/README.md)
     - Q. 자료구조란?
     - Q. Array VS Linked List
@@ -71,6 +73,7 @@
     - Q. Call By Value VS Call By Reference
     - Q. 얕은 복사(Shallow Copy) VS 깊은 복사(Deep Copy)
     - Q. 기본 자료형(primitive data type)과 참조 자료형(reference data type)
+    - Q. 동일성과 동등성
 - [JAVA](https://github.com/CODEMCD/technical-interview-speaking/blob/master/JAVA/README.md)
     - Q. Java
         - 자바 실행 과정
@@ -89,8 +92,19 @@
     - Q. 추상 클래스(abstract class)와 인터페이스(interface)
     - Q. Generic(제네릭)
     - Q. 롬복(Lombok)이 생성하는 메서드가 만들어지는 시점
-    - Q. JUnit의 생명주기에 설명하시오.
-- [C++]()
+    - Q. Enum
+    - Q. Thread
+        - DaemonThread
+        - `synchronized`
+        - ThreadLocal
+    - Q. `equals`, `hashCode`
+    - Q. Annotation
+    - Q. 직렬화
+    - Q. Reflection
+    - Q. `Comparable`과 `Comparator`
+    - Q. Gradle
+- [C++](https://github.com/CODEMCD/tech-speaking-for-web-developer/blob/master/CPP/README.md)
+    - Q. C++ VS Java
 - [Javascript](https://github.com/CODEMCD/technical-interview-speaking/blob/master/Javascript/README.md)
     - Q. 기본 문법
     - Q. ES6(ECMAScript 6)
@@ -105,8 +119,13 @@
     - Q. 상속(Inheritance)
     - Q. 다형성(Polymorphism)
     - Q. SOLID 원칙
-- [테스트 코드]()
-- [클린 코드]()
+    - Q. 객체지향 생활체조
+- [테스트 코드](https://github.com/CODEMCD/tech-speaking-for-web-developer/blob/master/TestCode/README.md)
+    - Q. 테스트 코드의 장단점
+    - Q. 좋은 테스트 코드
+    - Q. TDD(Test-Driven Development)
+         - ATDD(Acceptance Test Driven Development)
+    - Q. Spring Boot를 활용한 API 서버 테스트 코드
 - [Git]()
 
 ### Framework
@@ -118,6 +137,10 @@
     - Q. Spring MVC
     - Q. AOP
     - Q. Spring Framework VS Spring Boot
+- [JPA](https://github.com/CODEMCD/tech-speaking-for-web-developer/blob/master/JPA/README.md)
+    - Q. JPA(Java Persistence API)란?
+        - ORM(Object-Relation Mapping)
+    - Q. 영속성 컨텍스트
 - [Vue.js]()
 
 

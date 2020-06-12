@@ -1,6 +1,11 @@
 # JPA 관련 질문
 
-## JPA(Java Persistence API)란?
+## 목차
+- [Q. JPA(Java Persistence API)란?](#q-jpajava-persistence-api란)
+- [Q. 영속성 컨텍스트](#q-영속성-컨텍스트)
+
+
+## Q. JPA(Java Persistence API)란?
 자바 ORM 기술에 대한 API 명세로, Java에서 제공하는 API입니다. 주의할 점은 JPA는 라이브러리가 아니라 단순히 **ORM을 사용하기 위한 인터페이스 모음**이라는 것입니다. 따라서 JPA를 구현하는 Hibernate, EclipseLink, DataNucleus 등과 같은 ORM 프레임워크를 사용해야합니다.
 
 ![JPA 모습](./images/jpa.png)

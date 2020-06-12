@@ -1,6 +1,5 @@
 # 자바 관련 질문
 ## 목차
-
 - [Q. Java](#q-java)
 - [Q. `final` 키워드](#q-final-키워드)
 - [Q. Error와 Exception](#q-error와-exception)
@@ -10,7 +9,15 @@
 - [Q. 추상 클래스(abstract class)와 인터페이스(interface)](#q-추상-클래스abstract-class와-인터페이스interface)
 - [Q. Generic(제네릭)](#q-generic제네릭)
 - [Q. 롬복(Lombok)이 생성하는 메서드가 만들어지는 시점](#q-롬복lombok이-생성하는-메서드가-만들어지는-시점)
-- [Q. JUnit의 생명주기에 설명하시오.](#q-junit의-생명주기에-설명하시오)
+- [Q. Enum](#q-enum)
+- [Q. Thread](#q-thread)
+- [Q. `equals`, `hashCode`](#q-equals-hashcode)
+- [Q. Annotation](#q-annotation)
+- [Q. 직렬화](#q-직렬화)
+- [Q. Reflection](#q-reflection)
+- [Q. `Comparable`과 `Comparator`](#q-comparable과-comparator)
+- [Q. Gradle](#q-gradle)
+
 
 ## Q. Java
 자바는 Sun Microsystems에서 제임슨 고슬링과 연구원들이 만든 객체 지향 프로그래밍 언어로 1995년에 출시되었습니다.

@@ -158,6 +158,18 @@ HTTP는 비연결성이므로 상태를 저장할 수 없는 무상태라는 특
 
 세션이 만료되면 해당 세션 ID를 가진 쿠키 역시 사용할 수 없게 되며 새로운 세션 ID를 발급받아야 합니다.
 
+세션을 저장하는 방식은 크게 3 가지가 있습니다. 
+- 톰캣과 같은 WAS 세션을 사용한다.
+    - WAS를 사용할 때 기본 설정이다.
+    - 2대 이상의 WAS가 구동되는 환경에서는 WAS 간의 세션 공유를 위한 추가 설정이 필요하다.(Sticky Session)
+- MySQL과 같은 데이터베이스를 사용한다.
+    - 여러 WAS 간의 공용 세션을 사용할 수 있는 가장 쉬운 방법이다.
+    - 세션 요청마다 DB IO를 사용해야 해서 성능상 이슈가 발생할 수 있다.
+    - 로그인을 기준으로 로그인 요청이 많이 없는 백오피스, 사내 시스템 용도로 많이 사용한다.
+- Redis, Memcached와 같은 메모리 DB를 사용한다.
+    - B2C 서비스엫서 가장 많이 사용되는 방식이다.
+    - 실제 서비스로 사용하기 위해서는 Embedded Redis와 같은 방식이 아닌 외부 메모리 서버가 필요하다.
+
 ### 쿠키와 세션 차이
 쿠키와 세션의 공통점은 데이터를 유지한다는 점입니다.
 
@@ -258,3 +270,9 @@ Non-Credential Request는 `xhr.withCredentials = true` 지정하지 않는 것�
 ## Q. 서버 사이드 렌더링 VS 클라이언트 사이드 렌더링
 - <https://asfirstalways.tistory.com/244>
 - <https://www.slipp.net/questions/368>
+
+
+## Q. Proxy
+
+### Forward Proxy VS Reverse Proxy
+- <http://blog.naver.com/PostView.nhn?blogId=alice_k106&logNo=221190043948&redirect=Dlog&widgetTypeCall=true&directAccess=false>
