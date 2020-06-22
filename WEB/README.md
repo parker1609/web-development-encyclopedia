@@ -6,7 +6,10 @@
 - [Q. REST API(Restful API)](#q-rest-apirestful-api)
 - [Q. 쿠키와 세션](#q-쿠키와-세션)
 - [Q. 인증 방식](#q-인증-방식)
-- [Q. 브라우저의 동작 과정](#q-브라우저의-동작-과정)
+- [Q. CORS(Cross-Origin Resource Sharing)](#q-corscross-origin-resource-sharing)
+- [Q. 서버 사이드 렌더링 VS 클라이언트 사이드 렌더링](#q-서버-사이드-렌더링-vs-클라이언트-사이드-렌더링)
+- [Q. Proxy](#q-proxy)
+
 
 ## Q. Web Server
 웹 서버는 HTTP를 기반으로 클라이언트의 요청을 처리하는 서비스를 말합니다. 웹 브라우저와 같은 클라이언트의 요청에 따라 정적 페이지와 동적 페이지를 통해 응답을 하게 되는데, 정적 페이지를 처리하는 것이 **Web Server**이고 동적 페이지를 처리하는 것이 **Web Application Server**(**WAS**)입니다.
@@ -267,12 +270,14 @@ Non-Credential Request는 `xhr.withCredentials = true` 지정하지 않는 것�
 - [[Web]동일 출처 정책?? CORS?? 도대체 뭘까??](https://kamang-it.tistory.com/entry/Web%EB%8F%99%EC%9D%BC-%EC%B6%9C%EC%B2%98-%EC%A0%95%EC%B1%85-CORS-%EB%8F%84%EB%8C%80%EC%B2%B4-%EB%AD%98%EA%B9%8C?category=693872)
 
 
+## Q. CSRF(Cross Site Request Forgery)
+
+
 ## Q. 서버 사이드 렌더링 VS 클라이언트 사이드 렌더링
 - <https://asfirstalways.tistory.com/244>
 - <https://www.slipp.net/questions/368>
 
 
 ## Q. Proxy
-
 ### Forward Proxy VS Reverse Proxy
 - <http://blog.naver.com/PostView.nhn?blogId=alice_k106&logNo=221190043948&redirect=Dlog&widgetTypeCall=true&directAccess=false>

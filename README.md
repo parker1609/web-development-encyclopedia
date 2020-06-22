@@ -1,4 +1,4 @@
-# Technical Speaking For Web Developer
+# 웹 개발 백과사전
 > 웹 개발을 학습하면서 관련 개념에 대해 설명할 수 있을 정도로 정리하는 공간입니다.
 
 
