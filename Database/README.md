@@ -260,6 +260,11 @@ BCNF 정규형은 제 3 정규형을 좀 더 엄격하게 지킨 정규형입니
 반정규화가 심해지면 역시 데이터의 중복이 많아지고 다시 이상 현상이 발생할 수 있습니다.
 
 
+## Q. JOIN, UNION
+- <https://stackoverflow.com/questions/905379/what-is-the-difference-between-join-and-union>
+- <https://velog.io/@codemcd/MySQL-%ED%85%8C%EC%9D%B4%EB%B8%94-%EC%A1%B0%EC%9D%B8JOIN>
+
+
 ## Q. SQL Injection
 SQL Injection은 보안상 취약점을 이용하여 임의의 SQL문을 주입하여 악의적으로 데이터베이스가 비정상적으로 동작하도록 만드는 행위입니다. 대표적으로 `Statement` 구문과 같이 다이나믹 SQL을 사용하는 시스템에 임의의 SQL문을 덧붙여 주입하는 사례가 있습니다. 이는 `PreparedStatement` 구문을 사용하는 것으로 간단히 해결할 수 있습니다. `PreparedStatement`는 쿼리를 수행하기 전에 미리 컴파일을 하기 때문에 덧붙인 부분은 단순히 문자열로 인식하여 무시하거나 에러가 발생합니다.
 
