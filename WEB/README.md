@@ -110,7 +110,7 @@ HTTP는 요청 메시지와 응답 메시지로 나뉘며, 이 메시지들은 �
 - `Cookie: id=admin; password=1234;` 와 같이 헤더에 정보를 담아 요청하는 경우
 
 #### 2. 쿠키와 세션 방식
-쿠키와 세션은 클라이언트와 서버 간의 상태를 저장하는 대표적인 방법입니다. 쿠키와 세션에 대한 자세한 이야기는 아래에 있습니다.([바로가기]()) 여기서는 쿠키와 세션으로 로그인 과정을 어떻게 수행하는지 살펴보도록 하겠습니다.
+쿠키와 세션은 클라이언트와 서버 간의 상태를 저장하는 대표적인 방법입니다. 쿠키와 세션에 대한 자세한 이야기는 아래에 있습니다.([바로가기](#q-쿠키와-세션)) 여기서는 쿠키와 세션으로 로그인 과정을 어떻게 수행하는지 살펴보도록 하겠습니다.
 
 ![쿠키와 세션을 활용한 로그인 과정](./images/login_cookie_session.png)
 출처: <https://tansfil.tistory.com/58?category=255594>
@@ -136,9 +136,10 @@ HTTP는 요청 메시지와 응답 메시지로 나뉘며, 이 메시지들은 �
     - 쿠키는 단일 도메인 및 서브 도메인에 한정되므로 CORS 문제로 관리가 까다롭습니다. 따라서 서버의 확장이 어렵습니다.
 
 #### 3. 토큰(JWT) 기반 인증 방식
-쿠키와 세션 방식의 단점을 해결하고자 나온 것이 토큰 기반 방식입니다. 대표적으로 [JWT(Json Web Token)]()이 있습니다. 클라이언트는 인증을 위해 쿠키 대신 토큰을 헤더에 담아 서버에 요청합니다.
+쿠키와 세션 방식의 단점을 해결하고자 나온 것이 토큰 기반 방식입니다. 대표적으로 [JWT(Json Web Token)](#q-jwtjson-web-token)이 있습니다. 클라이언트는 인증을 위해 쿠키 대신 토큰을 헤더에 담아 서버에 요청합니다.
 
 ![JWT를 활용한 로그인 과정](./images/login_jwt.png)
+출처: <https://tansfil.tistory.com/58?category=255594>
 
 1. 사용자가 최초로 로그인 요청을 서버에게 전달한다.
 2. 로그인 요청을 받은 서버는 데이터베이스에 저장된 사용자 정보와 요청받은 사용자 정보가 일치한지 확인한다.
@@ -166,6 +167,7 @@ HTTP는 요청 메시지와 응답 메시지로 나뉘며, 이 메시지들은 �
 Refresh Token은 일반적으로 유효기간이 2주이며, Access Token은 1시간 정도입니다. 유효기간이 짧아 Access Token을 탈취당하더라도 금방 새로운 토큰이 발급되어 보안을 높일 수 있습니다. Refresh Token의 유효기간이 만료되면 클라이언트는 새로 로그인해야 하는 단점이 있습니다.
 
 ![Refresh Token이 추가된 JWT를 활용한 로그인 과정](./images/login_jwt_with_refresh_token.png)
+출처: <https://tansfil.tistory.com/58?category=255594>
 
 1 ~ 6번 과정은 위에서 살펴본 Access Token만을 활용한 JWT 방식과 비슷합니다. 차이점은 Access Token 발급과 함께 **Refresh Token을 발급하여 클라이언트에게 응답으로 보내는 것입니다.** 서버는 발급한 **Refresh Token을 유저 정보가 저장된 데이터베이스의 테이블에 같이 저장**합니다. 클라이언트는 **Refresh Token은 안전한 저장소에 저장한 후** Access Token이 만료되기 전까지 Access Token만을 담아서 요청합니다.
 
@@ -197,8 +199,50 @@ Refresh Token은 일반적으로 유효기간이 2주이며, Access Token은 1�
     - HTTP 요청 횟수가 많아져 네트워크 비용이 커집니다.
 
 #### 5. OAuth2.0
+**OAuth**란 외부서비스의 인증 및 권한부여를 관리하는 범용적인 프로토콜입니다. 외부서비스는 OAuth를 사용하는 쪽의 서비스를 말합니다. OAuth 역시 인증을 위해서 쿠키/세션 또는 토큰 방식을 기반으로 동작합니다.
+
+현재는 OAuth2.0버전을 대부분 사용합니다. OAuth2.0의 특징은 다음과 같습니다.
+- 모바일 애플리케이션에서도 사용이 용이해짐
+- HTTPS 사용
+- Access Token의 만료시간이 생김
+
+OAuth2.0의 인증 방식은 크게 4가지 입니다.
+- **Authorization Code Grant**
+- Implicit Grant
+- Resource Owner Password Credentials Grant
+- Client Credentials Grant
+
+위 4가지 중 가장 많이 사용하는 Authorization Code Grant의 과정을 살펴보겠습니다. 
+
+![OAuth2.0 구성 요소](./images/oauth2.0.png)
+출처: <https://tansfil.tistory.com/60?category=255594>
+
+먼저 OAuth2.0의 구성 요소를 살펴보겠습니다.
+- **Resource Owner**: OAuth2.0를 통해 인증받을 사용자(로그인하는 일반 유저)
+- **Client**: OAuth2.0를 사용하는 사용자(로그인 기능을 구현할 애플리케이션 서버)
+- **Authorization Server**: 권한을 관리하는 서버, Access Token/Refresh Token 발급 및 재발급 역할
+- **Resource Server**: Google, Facebook, naver와 같은 OAuth2.0을 제공하는 서버의 자원을 관리하는 서버
+
+![OAuth2.0을 활용한 로그인 과정](./images/login_oauth2.0.png)
+출처: <https://tansfil.tistory.com/60?category=255594>
+
+1. Resource Owner가 Client에게 인증 요청을 합니다.
+2. Client는 Authorization Request를 통해 Resource Owner에게 Google, Facebook 로그인 URL와 같은 인증할 수단을 보냅니다.
+3. Resource Owner는 해당 Authorization Request를 통해 인증을 진행하고 완료했다는 신호로 Authorization Grant를 URL에 포함하여 Client에게 보냅니다.
+4. Client는 해당 권한증서(Authorization Grant)를 Authorization Server에 보냅니다.
+5. Authorization Server는 권한증서를 확인 후, 유저가 맞다면 Client에게 Access Token, Refresh Token, 그리고 유저의 프로필 정보(id 포함) 등을 제공합니다.
+6. Client는 해당 Access Token을 DB에 저장하거나 Resource Owner에게 보내줍니다.
+7. Resource Owner가 Resource Server의 자원이 필요하면, Client는 Access Token을 담아 Resource Server에 요청합니다.
+8. Resource Server는 Access Token이 유효한지 확인 후, Client에게 자원을 보냅니다.
+
+만약 Access Token이 만료됐거나 위조되었다면, Client는 Authorization Server에 Refresh Token을 보내 Access Token을 재발급 받습니다. 그리고 다시 Resource Server에게 자원을 요청합니다.
+ 
+만약 Refresh token도 만료되었을 경우, Resource Owner는 새로운 Authorization Grant를 Client에게 보내야합니다. (사용자가 다시 로그인 하라는 의미입니다.)
+
+기존 토큰 방식에서는 인증 및 권한과 자원을 한 곳에서 관리했다면 이와 달리 OAuth2.0은 **Authorization Server에서 인증 및 권한을 관리(토큰 관리)하고 Resource Server는 자원만을 관리**합니다.
 
 #### 6. SNS 로그인
+Google, Facebook, Github, naver와 같은 SNS 로그인은 모두 OAuth2.0 프레임워크를 통해 로그인 API를 제공합니다. 따라서 위에서 살펴봤던 OAuth2.0의 과정을 통해 인증을 진행합니다. 하지만 대부분의 SNS는 Resource Server에게 토큰을 사용하여 자원을 요청하지는 않고, Client(애플리케이션 서버)의 자체 DB에 회원 ID를 저장하여 관리합니다.
 
 ### Reference
 - [쉽게 알아보는 서버 인증 1편(세션/쿠키 , JWT)](https://tansfil.tistory.com/58?category=255594)
