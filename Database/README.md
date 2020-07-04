@@ -260,10 +260,39 @@ BCNF 정규형은 제 3 정규형을 좀 더 엄격하게 지킨 정규형입니
 반정규화가 심해지면 역시 데이터의 중복이 많아지고 다시 이상 현상이 발생할 수 있습니다.
 
 
-## Q. JOIN, UNION
+## Q. SQL
+SQL은 **Structured Query Language**의 약자로, RDBMS(관계형 데이터베이스 관리 시스템)에서 데이터를 관리하기 위해 설계된 언어입니다. SQL은 기본적으로 문법에 대한 표준이 있지만 데이터베이스의 종류마다 **방언(Dialect)**이 있어 같은 기능의 SQL이라도 데이터베이스의 종류마다 다른 경우가 있습니다.
+
+SQL의 기본 구조는 다음과 같습니다.
+
+```sql
+SELECT [컬럼 이름]
+FROM [테이블 이름]
+WHERE [조건]
+GROUP BY [그룹화할 컬럼]
+HAVING [그룹화한 뒤 조건]
+ORDER BY [정렬 조건]
+LIMIT [제한할 개수]
+```
+
+SQL의 연산 순서는 다음과 같습니다.
+1. `WHERE`
+2. `GROUP BY`
+3. `HAVING`
+4. `SELECT`
+5. `ORDER BY`
+6. `LIMIT`
+
+### COUNT
+- `COUNT(컬럼)`을 하면 NULL값은 제외하고 컬럼의 개수를 센다.
+- `COUNT(*)`는 NULL값을 포함하여 컬럼의 개수를 센다.
+
+### JOIN, UNION
 - <https://stackoverflow.com/questions/905379/what-is-the-difference-between-join-and-union>
 - <https://velog.io/@codemcd/MySQL-%ED%85%8C%EC%9D%B4%EB%B8%94-%EC%A1%B0%EC%9D%B8JOIN>
 
+### Reference
+- [비전공자를 위한 SQL](https://zzsza.github.io/development/2018/03/18/sql-for-everyone/)
 
 ## Q. SQL Injection
 SQL Injection은 보안상 취약점을 이용하여 임의의 SQL문을 주입하여 악의적으로 데이터베이스가 비정상적으로 동작하도록 만드는 행위입니다. 대표적으로 `Statement` 구문과 같이 다이나믹 SQL을 사용하는 시스템에 임의의 SQL문을 덧붙여 주입하는 사례가 있습니다. 이는 `PreparedStatement` 구문을 사용하는 것으로 간단히 해결할 수 있습니다. `PreparedStatement`는 쿼리를 수행하기 전에 미리 컴파일을 하기 때문에 덧붙인 부분은 단순히 문자열로 인식하여 무시하거나 에러가 발생합니다.
