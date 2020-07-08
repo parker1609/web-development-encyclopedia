@@ -335,7 +335,7 @@ JWT는 구분자 `.`를 기준으로 크게 3가지로 나뉘며 문자열로 �
 - [JWT(JSON Web Token)에 대해서...](https://blog.outsider.ne.kr/1160)
 
 
-## Q. REST API(Restful API)
+## Q. REST API(REpresentational State Transfer Application Programming Interface)
 REST API는 REST 제약조건을 준수하는 API를 말합니다. REST 제약조건은 다음과 같습니다.
 - 서버-클라이언트 구조
 - 캐시 처리 가능
