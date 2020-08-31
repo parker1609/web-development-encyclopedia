@@ -83,18 +83,35 @@ Web Server가 필요한 실제 사례로는 다음과 같다고 합니다.
         - 자체적으로 웹 서버가 있지만, 다른 웹 서버와 연동하여 사용 가능
         - 기본적으로 8080 포트 사용
 
-## Q. HTTP
-HTTP는 **웹에서 서버와 클라이언트 사이 HTML을 주고받기 위한 약속**입니다. 현재는 HTML뿐아니라 JSON, 멀티미디어 등 다양한 데이터를 주고받을 수 있습니다.
-
-HTTP의 특징은 **비연결적이고 무상태**입니다. 이는 한번 요청과 응답이 끝나면 연결을 끊고 상태 정보를 유지하지 않는다는 것입니다. 이러한 특징으로 많은 수의 요청 처리를 처리할 수 있게 되었습니다. 하지만 문제는 서버에서 클라이언트가 누구인지, 어떤 상태인지 알아야 하는 경우가 빈번하게 발생합니다. 대표적으로 인증을 위한 로그인 기능이 있습니다. 이와 같이 클라이언트의 상태를 확인하기 위해 쿠키와 세션, 토큰과 같은 방법을 사용해야 합니다.
-
-HTTP는 기본적으로 TCP/IP 통신 위에서 동작하며 80번 포트를 사용합니다.
-
-HTTP는 요청 메시지와 응답 메시지로 나뉘며, 이 메시지들은 각각 헤더와 본문으로 나뉩니다. 이에 대한 자세한 정리는 이 [링크](https://velog.io/@codemcd/HTTP-%EB%A9%94%EC%8B%9C%EC%A7%80-lqk14ernft)에서 확인가능합니다.
+[:arrow_up_small: 위로가기](https://github.com/CODEMCD/web-development-encyclopedia/blob/master/WEB/README.md#web%EC%97%90-%EA%B4%80%ED%95%9C-%EC%A7%88%EB%AC%B8)
 
 
-## Q. HTTPS
+## Q. HTTP (HyperText Transfer Protocol)
+HTTP는 문자그대로 **어떻게 두 컴퓨터 간에 hypertext를 전송할지에 대한 약속**입니다. Hypertext는 일반적으로 HTML을 말하며 JSON, 멀티미디어 데이터등 웹에서 두 컴퓨터가 주고 받는 모든 데이터를 의미한다고 볼 수 있습니다.
+
+HTTP의 가장 큰 특징은 두 가지가 있습니다.
+- **Textual**
+- **Stateless**
+
+Textual(문자로 된)은 HTTP의 모든 데이터는 기본적으로 문자로 되어있으며, 사람이 읽을 수 있다는 것입니다.
+
+**Stateless**(독립적인)는 HTTP의 중요한 특징입니다. HTTP는 이전 통신을 저장하지 않기 때문에 완전히 독립적입니다. 이를 비연결적이고 무상태라고도 표현합니다. HTTP로 통신하는 서버 또는 클라이언트는 이전 통신을 기억하지 못하기 때문에 이를 위한 애플리케이션 서버가 필요합니다. HTTP는 stateless하기 때문에 많은 양의 요청 및 응답을 처리할 수 있습니다.
+
+HTTP는 서버와 클라이언트 사이에 어떻게 통신해야 할지 명확한 규칙을 제공합니다. 기본적으로 다음과 같습니다.
+- 오직 클라이언트만이 HTTP 요청을 만들 수 있으며, 서버에만 보낼 수 있습니다. 서버는 오직 HTTP 요청에만 응답할 수 있습니다.
+- HTTP를 통해 파일을 요청할 때, 클라이언트는 반드시 해당 파일의 URL을 명시해야 합니다.(파일의 경로를 명시한다고 볼 수 있습니다.)
+- HTTP 요청을 처리하는 서버는 최소한 에러 메시지를 포함해서라도 요청에 반드시 응답해야 합니다.
+
+HTTP의 메시지는 요청 메시지와 응답 메시지로 나뉘며, 이 메시지들은 각각 헤더와 본문으로 나뉩니다. 이에 대한 자세한 정리는 이 [링크](https://velog.io/@codemcd/HTTP-%EB%A9%94%EC%8B%9C%EC%A7%80-lqk14ernft)에서 확인가능합니다.
+
+[:arrow_up_small: 위로가기](https://github.com/CODEMCD/web-development-encyclopedia/blob/master/WEB/README.md#web%EC%97%90-%EA%B4%80%ED%95%9C-%EC%A7%88%EB%AC%B8)
+
+
+## Q. HTTPS(HyperText Transfer Protocol Secure)
 - <https://opentutorials.org/course/228/4894>
+- <https://webactually.com/2018/11/http%EC%97%90%EC%84%9C-https%EB%A1%9C-%EC%A0%84%ED%99%98%ED%95%98%EA%B8%B0-%EC%9C%84%ED%95%9C-%EC%99%84%EB%B2%BD-%EA%B0%80%EC%9D%B4%EB%93%9C/>
+
+[:arrow_up_small: 위로가기](https://github.com/CODEMCD/web-development-encyclopedia/blob/master/WEB/README.md#web%EC%97%90-%EA%B4%80%ED%95%9C-%EC%A7%88%EB%AC%B8)
 
 
 ## Q. 인증(Authentication)과 인가(Authorization)
@@ -109,6 +126,8 @@ HTTP는 요청 메시지와 응답 메시지로 나뉘며, 이 메시지들은 �
 - `Cookie: id=admin; password=1234;` 와 같이 헤더에 정보를 담아 요청하는 경우
 
 회원가입이나 로그인 요청 때도 물론 ID, PASSWORD가 HTTP에 담겨져 보내지게 됩니다. 하지만 인증보다는 빈도수 차이가 매우 크다고 볼 수 있습니다. 회원가입과 로그인은 웹 사이트를 사용하면서 매우 드문 요청입니다. 따라서 이를 탈취하기는 쉽지 않다고 생각됩니다. 반면에 인증은 로그인 이후부터 모든 요청에 포함되어야 하므로 HTTPS를 사용하더라도 보안에 신경써야 합니다.
+
+> 이 [링크](https://okky.kr/article/496801)는 회원가입할 때 보안에 대한 토론을 한 OKKY 게시글입니다. 한 번 읽어보면 좋을 것 같습니다.
 
 #### 2. 쿠키와 세션 방식
 쿠키와 세션은 클라이언트와 서버 간의 상태를 저장하는 대표적인 방법입니다. 쿠키와 세션에 대한 자세한 이야기는 아래에 있습니다.([바로가기](#q-쿠키와-세션)) 여기서는 쿠키와 세션으로 로그인 과정을 어떻게 수행하는지 살펴보도록 하겠습니다.
@@ -127,7 +146,6 @@ HTTP는 요청 메시지와 응답 메시지로 나뉘며, 이 메시지들은 �
 9. 요청을 처리한 후 데이터를 사용자에게 응답한다.
 
 세션 저장소로는 Redis라는 메모리 데이터베이스를 많이 사용합니다. 자세한 정보는 쿠키와 세션 파트에 있습니다.
-
 - 장점
     - 인증에 대한 정보와 처리는 세션이 저장되어 있는 서버이므로 보안적으로 안전합니다.(쿠키는 단지 Session ID만을 들고 있을 뿐이며, 서버는 해킹하기 까다롭습니다.)
 - 단점
@@ -252,9 +270,11 @@ Google, Facebook, Github, naver와 같은 SNS 로그인은 모두 OAuth2.0 프�
 - [JWT에 대해 알아보자!](https://medium.com/heumlabs/what-is-jwt-89889759ae37): 브라우저에서 JWT 저장과 재로그인 관련
 - [[JWT] 토큰(Token) 기반 인증에 대한 소개](https://velopert.com/2350)
 
+[:arrow_up_small: 위로가기](https://github.com/CODEMCD/web-development-encyclopedia/blob/master/WEB/README.md#web%EC%97%90-%EA%B4%80%ED%95%9C-%EC%A7%88%EB%AC%B8)
+
 
 ## Q. 쿠키와 세션
-HTTP는 비연결성이므로 상태를 저장할 수 없는 무상태라는 특징이 있습니다. 서버는 클라이언트의 상태를 저장하지 않으므로, 해당 요청의 클라이언트는 항상 새로운 클라이언트로 인식합니다. 따라서 로그인 인증과 장바구니와 같은 기능을 구현할 수 없습니다. 서버 입장에서는 로그인을 해도 다음 페이지로 넘어가면 이전 상태를 저장하지 않으므로 이 클라이언트가 로그인한 것인지 알 수 없기 때문입니다.
+HTTP는 stateless이므로 상태를 저장할 수 없는 무상태라는 특징이 있습니다. 서버는 클라이언트의 상태를 저장하지 않으므로, 해당 요청의 클라이언트는 항상 새로운 클라이언트로 인식합니다. 따라서 로그인 인증과 장바구니와 같은 기능을 구현할 수 없습니다. 서버 입장에서는 로그인을 해도 다음 페이지로 넘어가면 이전 상태를 저장하지 않으므로 이 클라이언트가 로그인한 것인지 알 수 없기 때문입니다.
 
 이를 해결하는 대표적인 방법이 쿠키와 세션을 사용하는 것입니다.
 
@@ -317,6 +337,8 @@ HTTP는 비연결성이므로 상태를 저장할 수 없는 무상태라는 특
 - [[Web][조금 더 자세히]서버와 클라의 연결고리, 상태를 서버에 저장하는 http session, cookie와의 비교](https://kamang-it.tistory.com/entry/Web%EC%A1%B0%EA%B8%88-%EB%8D%94-%EC%9E%90%EC%84%B8%ED%9E%88%EC%84%9C%EB%B2%84%EC%99%80-%ED%81%B4%EB%9D%BC%EC%9D%98-%EC%97%B0%EA%B2%B0%EA%B3%A0%EB%A6%AC-%EC%83%81%ED%83%9C%EB%A5%BC-%EC%84%9C%EB%B2%84%EC%97%90-%EC%A0%80%EC%9E%A5%ED%95%98%EB%8A%94-http-session-cookie%EC%99%80%EC%9D%98-%EB%B9%84%EA%B5%90?category=693872)
 - [[HTTP] 쿠키( Cookie )와 세션( Session )](https://victorydntmd.tistory.com/34)
 
+[:arrow_up_small: 위로가기](https://github.com/CODEMCD/web-development-encyclopedia/blob/master/WEB/README.md#web%EC%97%90-%EA%B4%80%ED%95%9C-%EC%A7%88%EB%AC%B8)
+
 
 ## Q. JWT(Json Web Token)
 JWT의 모습은 다음과 같습니다.
@@ -334,9 +356,13 @@ JWT는 구분자 `.`를 기준으로 크게 3가지로 나뉘며 문자열로 �
 - [[JWT] JSON Web Token 소개 및 구조](https://velopert.com/2389)
 - [JWT(JSON Web Token)에 대해서...](https://blog.outsider.ne.kr/1160)
 
+[:arrow_up_small: 위로가기](https://github.com/CODEMCD/web-development-encyclopedia/blob/master/WEB/README.md#web%EC%97%90-%EA%B4%80%ED%95%9C-%EC%A7%88%EB%AC%B8)
 
-## Q. REST API(REpresentational State Transfer Application Programming Interface)
-REST API는 REST 제약조건을 준수하는 API를 말합니다. REST 제약조건은 다음과 같습니다.
+
+## Q. REST(REpresentational State Transfer) API(Application Programming Interface)
+REST API는 REST 제약조건을 준수하는 API를 말합니다. REST는 효율적이고 안정적으로 확장가능한 분산시스템을 만들기 위한 소프트웨어 아키텍처적인 제약조건을 말합니다. 이러한 제약조건을 준수했을 때 RESTful하다고 말하며, REST API는 RESTful한 API를 말한다고 볼 수 있습니다.
+
+REST 제약조건은 다음과 같습니다.
 - 서버-클라이언트 구조
 - 캐시 처리 가능
 - 무상태
@@ -361,16 +387,25 @@ REST API는 HTTP를 기반으로 하기 때문에 인터페이스 일관성을 �
 
 위는 인터페이스 일관성의 첫 번째, 두 번째 조건을 만족한 모습입니다. REST API를 완전히 지키기 어려운 이유는 세 번째와 네 번째 규칙때문입니다. '메시지는 스스로 설명해야 한다'는 것은 메시지의 헤더로 표현합니다. 본문의 데이터 타입은 `Content-type`으로 표시한다던지, 목적지는 `Host`로 적는 등을 말합니다. HATEOAS는 Hyperlink를 통해 애플리케이션의 상태는 전이된다는 것입니다. 이는 특히 JSON으로 데이터 통신을 할 때 대부분 지켜지지 않습니다.
 
-REST API를 보편적으로 말할 때는 인터페이스 일관성의 첫 번째와 두 번째 규칙을 지킨 것을 말합니다. REST API를 사용함으로써 얻는 장점은 웹을 개발하는 개발자 사이에서 의사소통이 편리해진다는 것입니다. URL과 HTTP Method를 보면 어떤 동작인지 쉽게 유추할 수 있기 때문입니다. 그리고 API의 표현 방식이 매우 간단하다는 장점도 있습니다.
+대부분의 REST API라고 말하는 API 역시 인터페이스 일관성 규칙 중 세 번째와 네 번째 규칙을 지키지 못한 경우가 대부분입니다. 물론 정확히 모든 제약조건을 지킨 것만 REST API라고 부르는 것이 좋지만, 그렇지 않더라도 대부분 REST API라고 통칭합니다.
 
-하지만 REST API 요청으로 인해 불필요한 데이터까지 응답하는 경우가 많다는 단점이 있습니다. 이는 통신 비용을 높아져 비효율적입니다. 이를 해결하기 위해 나온 것이 GraphQL입니다.
+이처럼 모든 제약조건을 지키지 않은 REST API라도 장점이 있으므로 계속 그렇게 사용한다고 생각합니다. 가장 큰 장점은 리소스에 대해 간단하고 직관적인 표현입니다. URL만 보더라도 어떤 데이터를 가져오고 어떤 동작을 할지 쉽게 유추할 수 있습니다. 이러한 이유와 의사소통의 장점까지해서 모든 REST 제약조건을 지키지 않는다고 해도 REST API라고 일반적으로 부르는 이유라고 생각합니다.
+
+> 물론 REST를 만든 로이 필딩은 이에 대해 많은 비판을 하고 있습니다...
+
+REST API도 단점을 가지고 있습니다. 일반적으로 불필요한 데이터까지 응답하는 경우가 많다라는 것입니다. 특정한 요청을 위한 데이터를 만들기보다는 일반적인 데이터(DTO같은)를 만들어서 JSON으로 요청 및 응답하기 때문이라 생각합니다. 이를 해결하기 위해 필요한 데이터만 응답 및 요청할 수 있는 GraphQL을 사용할 수도 있습니다.
 
 ### Reference
+- [그런 REST API로 괜찮은가 (Naver D2 발표영상)](https://www.youtube.com/watch?v=RP_f5dMoHFc&t=1s)
 - [REST(REpresentational State Transfer)](https://velog.io/@codemcd/RESTREpresentational-State-Transfer-hgk2muj4l2)
+
+[:arrow_up_small: 위로가기](https://github.com/CODEMCD/web-development-encyclopedia/blob/master/WEB/README.md#web%EC%97%90-%EA%B4%80%ED%95%9C-%EC%A7%88%EB%AC%B8)
 
 
 ## Q. CORS(Cross-Origin Resource Sharing)
-현재 서버와 다른 도메인으로부터 자원을 요청하는 경우 해당 자원은 **Cross-Site HTTP 요청**이 됩니다. 다른 도메인이란 프로토콜, 호스트(IP + Port) 중 하나라도 다르면 다른 도메인이라고 합니다. 서브 도메인은 상관없습니다.
+현재 서버와 다른 도메인(출처)으로부터 자원을 요청하는 경우 해당 자원은 **Cross-Site HTTP 요청**이 됩니다. 다른 도메인이란 프로토콜, 호스트(IP + Port) 중 하나라도 다르면 다른 도메인이라고 합니다. 서브 도메인은 상관없습니다.
+
+- [출처에 대해(MDN)](https://developer.mozilla.org/ko/docs/Glossary/Origin)
 
 HTTP 요청은 기본적으로 Cross-Site HTTP 요청이 가능합니다. `<img>`로 다른 도메인의 이미지를 가져오거나, `<link>`로 다른 도메인의 CSS 파일을 가져오거나, `<script>`로 다른 도메인의 Javascript 라이브러리를 가져오는 것이 가능합니다. 하지만 `<script></script>`로 둘러싸인 스크립트는 **Same-Origin Policy**를 따르기 때문에 Cross-Site HTTP 요청이 불가능합니다. 
 
@@ -378,7 +413,12 @@ HTTP 요청은 기본적으로 Cross-Site HTTP 요청이 가능합니다. `<img>
 
 AJAX가 널리 사용되면서 `<script></script>`로 생성되는 `XMLHttpRequest`에 대해서도 Cross-Site HTTP 요청이 가능해야 한다는 요구가 늘어나자 **W3C에서 CORS라는 권고안이 나오게 됩니다.**
 
-Same-Origin Policy를 지키는 곳은 서버가 아닌 클라이언트인 브라우저입니다. 서버는 CORS인지 알지 못합니다. 브라우저에서 해당 요청의 헤더의 Host와 Origin을 비교하여 다르면 CORS로 인식합니다.(브라우저에서 강제로 Origin을 변경하지 못하도록 막아놓았습니다.)
+### CORS 예시
+`https://domain-a.com`의 프론트엔드 JavaScript 코드가 **XMLHttpRequest**를 사용하여 `https://domain-b.com/data.json`을 요청하는 경우가 있습니다.
+
+Same-Origin Policy를 지키는 곳은 서버가 아닌 클라이언트인 브라우저입니다. 서버는 CORS인지 알지 못합니다. 브라우저에서 해당 HTTP 요청 헤더의 Host와 Origin을 비교하여 다르면 CORS로 인식합니다.(브라우저에서 강제로 Origin을 변경하지 못하도록 막아놓았습니다.)
+
+CORS로 인식한 브라우저는 요청 종류에 따라 다르게 요청을 보냅니다. 서버는 이를 인식하고 다른 도메인(출처)에 접근하는 것을 허용할지를 판단해서 응답을 해주어야 합니다.
 
 ### CORS 요청 종류
 CORS의 요청 종류는 4가지 조합으로 나뉩니다.
@@ -437,6 +477,9 @@ Non-Credential Request는 `xhr.withCredentials = true` 지정하지 않는 것�
 - [Cross Origin Resource Sharing - CORS](http://homoefficio.github.io/2015/07/21/Cross-Origin-Resource-Sharing/)
 - <https://github.com/JaeYeopHan/Interview_Question_for_Beginner/tree/master/FrontEnd#cors>
 - [[Web]동일 출처 정책?? CORS?? 도대체 뭘까??](https://kamang-it.tistory.com/entry/Web%EB%8F%99%EC%9D%BC-%EC%B6%9C%EC%B2%98-%EC%A0%95%EC%B1%85-CORS-%EB%8F%84%EB%8C%80%EC%B2%B4-%EB%AD%98%EA%B9%8C?category=693872)
+- <https://developer.mozilla.org/ko/docs/Web/HTTP/CORS>
+
+[:arrow_up_small: 위로가기](https://github.com/CODEMCD/web-development-encyclopedia/blob/master/WEB/README.md#web%EC%97%90-%EA%B4%80%ED%95%9C-%EC%A7%88%EB%AC%B8)
 
 
 ## Q.Web Hacking
@@ -447,19 +490,27 @@ Non-Credential Request는 `xhr.withCredentials = true` 지정하지 않는 것�
 
 ### CSRF(Cross Site Request Forgery)
 
+[:arrow_up_small: 위로가기](https://github.com/CODEMCD/web-development-encyclopedia/blob/master/WEB/README.md#web%EC%97%90-%EA%B4%80%ED%95%9C-%EC%A7%88%EB%AC%B8)
 
 
 ## Q. 서버 사이드 렌더링 VS 클라이언트 사이드 렌더링
 - <https://asfirstalways.tistory.com/244>
 - <https://www.slipp.net/questions/368>
 
+[:arrow_up_small: 위로가기](https://github.com/CODEMCD/web-development-encyclopedia/blob/master/WEB/README.md#web%EC%97%90-%EA%B4%80%ED%95%9C-%EC%A7%88%EB%AC%B8)
+
 
 ## Q. Proxy
 ### Forward Proxy VS Reverse Proxy
 - <http://blog.naver.com/PostView.nhn?blogId=alice_k106&logNo=221190043948&redirect=Dlog&widgetTypeCall=true&directAccess=false>
+
+[:arrow_up_small: 위로가기](https://github.com/CODEMCD/web-development-encyclopedia/blob/master/WEB/README.md#web%EC%97%90-%EA%B4%80%ED%95%9C-%EC%A7%88%EB%AC%B8)
 
 
 ## Q. 서버와 클라이언트 통신 과정
 - <https://www.youtube.com/watch?v=oW_EirDkCnM>
 - 성공과 실패를 결정하는 1%의 네트워크 원리
 - <https://d2.naver.com/helloworld/59361>
+- <https://github.com/alex/what-happens-when>
+
+[:arrow_up_small: 위로가기](https://github.com/CODEMCD/web-development-encyclopedia/blob/master/WEB/README.md#web%EC%97%90-%EA%B4%80%ED%95%9C-%EC%A7%88%EB%AC%B8)
