@@ -16,6 +16,10 @@
 - **복습**
 
 
+## 용어 사전
+- [웹 개발 관련 용어 사전]()
+
+
 ## 기술 면접
 - [기술 면접 시작하기](https://github.com/CODEMCD/tech-speaking-for-web-developer/blob/master/Tech-Interview/Tech-Interview-start.md)
     - 면접을 위한 자기소개서 작성법
