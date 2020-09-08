@@ -17,7 +17,7 @@
 
 
 ## 용어 사전
-- [웹 개발 관련 용어 사전]()
+- [웹 개발 관련 용어 사전](https://github.com/CODEMCD/web-development-encyclopedia/blob/master/Dictionary/README.md)
 
 
 ## 기술 면접
